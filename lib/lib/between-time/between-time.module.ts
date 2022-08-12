@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { FormlyFieldBetweenTimeComponent } from './between-time.component';
 import { NzCommTypeModule } from '../nz-comm-type.module';
 import { FormlyModule } from '@ngx-formly/core';
-import { BetweenTimeModule } from '@xmagic/nzx-antd/between-time';
+import { NzxBetweenTimeModule } from '@xmagic/nzx-antd/between-time';
 
 const COMPONENT = FormlyFieldBetweenTimeComponent;
 @NgModule({
   declarations: [COMPONENT],
   imports: [
     NzCommTypeModule,
-    BetweenTimeModule,
+    NzxBetweenTimeModule,
     FormlyModule.forChild({
       types: [
         {

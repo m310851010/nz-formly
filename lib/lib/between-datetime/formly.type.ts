@@ -4,7 +4,7 @@ import { FunctionProp, NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BaseBetweenOptions } from '../between-input/base-between.type';
 import { CompatibleDate, NzDateMode, SupportTimeOptions } from 'ng-zorro-antd/date-picker';
 import { NzDatePickerI18nInterface } from 'ng-zorro-antd/i18n';
-import { BetweenDatetimeComponent, DisabledDateType } from '@xmagic/nzx-antd/between-datetime';
+import { NzxBetweenDatetimeComponent, DisabledDateType } from '@xmagic/nzx-antd/between-datetime';
 
 /**
  * BetweenDatetime模板配置
@@ -75,9 +75,6 @@ export interface BaseBetweenDatetimeOptions<T> extends ControlOptions {
    * 默认面板日期
    */
   nzxEndDefaultPickerValue?: Date;
-
-  nzxStartSeparator?: string;
-  nzxEndSeparator?: string;
 
   nzxStartShowNow?: boolean;
   nzxEndShowNow?: boolean;
@@ -226,7 +223,7 @@ export interface BaseBetweenDatetimeOptions<T> extends ControlOptions {
   endMinDateTime?: DisabledDateType;
 }
 
-export type BetweenDatetimeOptions = BaseBetweenDatetimeOptions<BetweenDatetimeComponent> & BaseBetweenOptions;
+export type BetweenDatetimeOptions = BaseBetweenDatetimeOptions<NzxBetweenDatetimeComponent> & BaseBetweenOptions;
 
 export interface BetweenDateTimeFieldConfig extends NzFormlyFieldConfig<BetweenDatetimeOptions> {
   type: 'between-datetime';

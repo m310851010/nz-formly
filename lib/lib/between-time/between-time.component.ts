@@ -52,7 +52,7 @@ import { BetweenTimeOptions } from './formly.type';
       [nzxEndPopupClassName]="props.nzxEndPopupClassName"
       [nzxEndAddOn]="nzxEndAddOn"
       [nzxEndDefaultOpenValue]="props.nzxEndDefaultOpenValue"
-      [nzxEndUse12Hours]="false"
+      [nzxEndUse12Hours]="props.nzxEndUse12Hours"
       [nzxEndSuffixIcon]="nzxEndSuffixIcon"
       [nzxEndHideDisabledOptions]="props.nzxEndHideDisabledOptions"
       [nzxEndAllowEmpty]="props.nzxEndAllowEmpty"

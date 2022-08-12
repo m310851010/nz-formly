@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FieldType } from '@ngx-formly/core';
-import { Utils } from '@xmagic/nzx-antd/util';
+import { NzxUtils } from '@xmagic/nzx-antd/util';
 import { Observable, of, Subscription } from 'rxjs';
 import { TextFieldConfig } from './formly.type';
 
@@ -42,7 +42,7 @@ export class FormlyFieldTextValueComponent<T> extends FieldType<TextFieldConfig>
       return this.result;
     }
     const result = format(value, this.field);
-    if (Utils.isPromise(result) || Utils.isObservable(result)) {
+    if (NzxUtils.isPromise(result) || NzxUtils.isObservable(result)) {
       this.result = result;
       return result;
     }

@@ -2,7 +2,7 @@ import { ControlOptions, NzFormlyFieldConfig } from '../formly-utils';
 import { BaseBetweenOptions } from '../between-input/base-between.type';
 import { NzStatus } from 'ng-zorro-antd/core/types';
 import { TemplateRef } from '@angular/core';
-import { BetweenTimeComponent } from '@xmagic/nzx-antd/between-time';
+import { NzxBetweenTimeComponent } from '@xmagic/nzx-antd/between-time';
 import { DisabledDateType } from '@xmagic/nzx-antd/between-datetime';
 
 export interface BaseBetweenTimeOptions<T> extends ControlOptions {
@@ -99,7 +99,7 @@ export interface BaseBetweenTimeOptions<T> extends ControlOptions {
   endMinDateTime?: DisabledDateType;
 }
 
-export type BetweenTimeOptions = BaseBetweenTimeOptions<BetweenTimeComponent> & BaseBetweenOptions;
+export type BetweenTimeOptions = BaseBetweenTimeOptions<NzxBetweenTimeComponent> & BaseBetweenOptions;
 
 /**
  * BetweenTime 模板配置定义
