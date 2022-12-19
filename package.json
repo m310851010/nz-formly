@@ -20,14 +20,14 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
-    "rxjs": "~7.5.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
-    "@xmagic/nzx-antd": "^13.3.2",
+    "@ngx-formly/core": "~6.0.4",
+    "@xmagic/nzx-antd": "^13.3.10",
+    "echarts": "^5.3.2",
     "ng-zorro-antd": "^13.4.0",
     "ngx-echarts": "^8.0.1",
-    "@ngx-formly/core": "^6.0.0-rc.0",
-    "echarts": "^5.3.2"
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.2",

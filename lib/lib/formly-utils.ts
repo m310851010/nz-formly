@@ -100,8 +100,7 @@ export function findField(field: FormlyFieldConfig, key: string): FormlyFieldCon
 /**
  * 异步配置信息
  */
-export interface AsyncFormlyOptions<T extends NzSafeAny = NzSafeAny, U extends NzSafeAny = NzSafeAny>
-  extends AsyncOption<T, U> {
+export interface AsyncFormlyOptions<T extends NzSafeAny = NzSafeAny, U extends NzSafeAny = NzSafeAny> extends AsyncOption {
   /**
    * 可选项数据源
    */
