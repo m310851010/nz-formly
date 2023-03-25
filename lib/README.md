@@ -4,7 +4,7 @@
 
 ## demo
 
-![Alt Text](https://github.com/m310851010/nz-formly/raw/master/static/img.png)
+![Alt Text](https://raw.githubusercontent.com/m310851010/nz-formly/main/static/img.png)
 
 
 ## 用法
