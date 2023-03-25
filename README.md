@@ -1,27 +1,216 @@
-# nz-formly
+# NzFormly
 
-基于`ng-zorro-antd`和`nzx-antd`扩展的ngx-formly组件库
+基于ng-zorro-antd UI 扩展的ngx-formly组件库
 
-## Development server
+## demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![Alt Text](https://github.com/m310851010/nz-formly/raw/master/static/img.png)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 用法
 
-## Build
+### 安装
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```shell
+npm i @ngx-formly/core @xmagic/nz-formly @xmagic/nzx-antd
+```
 
-## Running unit tests
+### 导入模块
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NzFormlyModule } from '@xmagic/nz-formly';
+import { FormlyModule } from '@ngx-formly/core';
 
-## Running end-to-end tests
+/**
+ * ngx-formly的nz组件, 包含常用的表单组件
+ */
+@NgModule({
+  imports: [
+    CommonModule,
+    // 使用nz-formly所必须的模块
+    FormlyModule,
+    NzFormlyModule
+  ]
+})
+export class AppModule {}
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+> 上面代码导入的是基础模块, 要用里面的组件需要导入对应的模块。
+> 
+> 通常我们会创建一个`module`用来存放`nz-formly`用到的组件，例如：
 
-## Further help
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NzFormlyModule } from '@xmagic/nz-formly';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyCommonModule } from '@xmagic/nz-formly/common';
+import { FormlyNzCheckboxModule } from '@xmagic/nz-formly/checkbox';
+import { FormlyNzInputModule } from '@xmagic/nz-formly/input';
+import { FormlyNzDatePickerModule } from '@xmagic/nz-formly/date-picker';
+import { FormlyNzDateRangePickerModule } from '@xmagic/nz-formly/date-range-picker';
+import { FormlyNzRadioModule } from '@xmagic/nz-formly/radio';
+import { FormlyNzGridModule } from '@xmagic/nz-formly/grid';
+import { FormlyNzFormFieldModule } from '@xmagic/nz-formly/field-wrapper';
+import { FormlyNzTextareaModule } from '@xmagic/nz-formly/textarea';
+import { FormlyNzTextValueModule } from '@xmagic/nz-formly/text-value';
+import { FormlyNzSelectModule } from '@xmagic/nz-formly/select';
+import { FormlyNzSwitchModule } from '@xmagic/nz-formly/switch';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+/**
+ * ngx-formly的nz组件, 包含常用的表单组件
+ */
+@NgModule({
+  exports: [
+    CommonModule,
+    FormlyModule,
+    NzFormlyModule,
+    FormlyCommonModule,
+    FormlyNzCheckboxModule,
+    FormlyNzInputModule,
+    FormlyNzDatePickerModule,
+    FormlyNzDateRangePickerModule,
+    FormlyNzRadioModule,
+    FormlyNzGridModule,
+    FormlyNzFormFieldModule,
+    FormlyNzTextareaModule,
+    FormlyNzTextValueModule,
+    FormlyNzSelectModule,
+    FormlyNzSwitchModule
+    // 其他组件
+  ]
+})
+export class SharedFormlyModule {}
+```
+### 模板的写法
+
+仍然采用 `ngx-formly`的原生用法，`nz-formly`扩展了便捷的操作
+
+```html
+<form nz-form [formGroup]="form" (ngSubmit)="submit()">
+  <formly-form formly-box [model]="model" [fields]="fields" [options]="options" [form]="form">
+    <ng-template named="icon-button">
+      <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+    </ng-template>
+  </formly-form>
+</form>
+```
+
+### 组件的写法
+
+```ts
+@Component({
+  ...
+})
+export class AppComponent {
+  form = new FormGroup({});
+  model = { awesome: [1, 2], switchDemoKey: 'XX', myText2: 'some text' };
+  options: FormlyFormOptions = {
+    formState: {
+      labelNzFlex: '100px',
+      controlNzFlex: 'auto'
+    }
+  };
+  fields: NzField[] = [
+    {
+      key: 'name',
+      type: 'input',
+      props: {
+        label: '名称',
+        required: true,
+        nzSearch: true,
+        nzAddOnAfterName: 'icon-button'
+      }
+    },
+    {
+      key: 'awesome',
+      type: 'checkbox',
+      props: {
+        label: '渠道',
+        options: [
+          { label: '网络', value: 1 },
+          { label: '代理商', value: 2 },
+          { label: '其他', value: 3 }
+        ]
+      }
+    },
+    {
+      key: 'radioKey',
+      type: 'radio',
+      props: {
+        label: '单选',
+        options: [
+          { label: '网络', value: 1 },
+          { label: '代理商', value: 2 },
+          { label: '其他', value: 3 }
+        ]
+      }
+    },
+    {
+      key: 'switchDemoKey',
+      type: 'switch',
+      props: {
+        label: '开关',
+        nzxCheckedValue: 'XX',
+        nzxUnCheckedValue: 'YY'
+      }
+    },
+    {
+      key: 'comment',
+      type: 'textarea',
+      props: {
+        label: '评论',
+        rows: 2,
+        maxLength: 100,
+        nzMaxCharacterCount: 100
+      }
+    },
+    {
+      key: 'status',
+      type: 'select',
+      props: {
+        label: '状态',
+        nzAllowClear: true,
+        options: [
+          { label: 'AA', value: 'aa' },
+          { label: 'BB', value: 'bb' }
+        ]
+      }
+    },
+    {
+      key: 'myText',
+      type: 'text',
+      props: {
+        label: '文本'
+      }
+    },
+    {
+      key: 'myText2',
+      type: 'text',
+      props: {
+        label: '文本2'
+      }
+    }
+  ];
+
+  submit() {
+    if (this.form.valid) {
+      alert(JSON.stringify(this.model));
+    }
+  }
+}
+```
+
+## 运行环境
+
+- ndoejs 14+
+- angular 13.0+
+- ng-zorro-antd 13.0+
+- @ngx-formly/core 6.0+
+- @xmagic/nzx-antd 13.0+ (angular 14 请安装@xmagic/nzx-antd 14.0+)
+
+### License
+
+The MIT License (see the [LICENSE](https://github.com/m310851010/nz-formly/blob/master/LICENSE) file for the full text)

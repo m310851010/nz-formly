@@ -1,3 +1,3 @@
 export * from './formly-box-templates.directive';
-export * from './directive.module';
+export * from './common.module';
 export * from './formly-utils';

@@ -9,4 +9,4 @@ const COMPONENT = [FormlyBoxTemplates];
   imports: [CommonModule],
   exports: COMPONENT
 })
-export class FormlyDirectiveModule {}
+export class FormlyCommonModule {}
