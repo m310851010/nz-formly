@@ -8,7 +8,7 @@ import { TextFieldConfig } from './formly.type';
   selector: 'nz-formly-text-value',
   template: `
     <nz-form-text class="wrap-text" [formlyAttributes]="field" [ngClass]="props.ngClass" [ngStyle]="props.ngStyle">
-      {{ textValue | async | defaultify }}
+      {{ textValue | async | defaultify: props.defaultText }}
     </nz-form-text>
   `,
   styles: [
@@ -23,6 +23,12 @@ import { TextFieldConfig } from './formly.type';
 export class FormlyFieldTextValueComponent<T> extends FieldType<TextFieldConfig> implements OnInit, OnDestroy {
   private result?: Observable<T> | Promise<T>;
   private subscription?: Subscription;
+
+  override defaultOptions = {
+    props: {
+      defaultText: '--',
+    }
+  };
 
   ngOnInit(): void {
     this.subscription = this.formControl!.valueChanges.subscribe(value => {
