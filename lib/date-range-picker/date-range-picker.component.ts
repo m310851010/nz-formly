@@ -52,7 +52,8 @@ export class FormlyFieldDateRangePickerComponent extends FieldType {
       nzDisabled: false,
       nzPopupStyle: {},
       nzInputReadOnly: false,
-      nzSeparator: '~'
+      nzSeparator: '~',
+      nzSuffixIcon: 'calendar'
     }
   };
 
