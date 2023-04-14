@@ -27,6 +27,11 @@ export interface TextOptions extends ControlOptions {
     value: NzSafeAny,
     field: NzFormlyFieldConfig<TextOptions>
   ) => Observable<NzSafeAny> | Promise<NzSafeAny> | NzSafeAny | null;
+
+  /**
+   * 默认显示文本
+   */
+  defaultText?: string;
 }
 
 /**
