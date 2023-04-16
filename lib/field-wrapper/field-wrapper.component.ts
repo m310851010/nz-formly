@@ -5,7 +5,7 @@ import { FormlyBoxTemplates, hasTplNameValue, resolveTplName } from '@xmagic/nz-
 @Component({
   selector: 'formly-field-wrapper',
   template: `
-    <nz-form-item [class]="this.field.className">
+    <nz-form-item [class]="field.className">
       <ng-container *ngIf="hasLabel && props.hideLabel !== true">
         <nz-form-label
           *ngIf="hasLabel"
