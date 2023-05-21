@@ -46,7 +46,8 @@ export class FormlyFieldDatePickerComponent extends FieldType {
       nzPopupStyle: {},
       nzShowToday: true,
       nzShowNow: true,
-      nzInputReadOnly: false
+      nzInputReadOnly: false,
+      nzSuffixIcon: 'calendar'
     }
   };
 

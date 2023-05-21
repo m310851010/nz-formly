@@ -60,7 +60,7 @@ export function resolveTplName<T = NzSafeAny>(
   propName: string,
   propTemplateName?: string
 ): TemplateRef<T> | undefined {
-  if (value[propName] != null) {
+  if (value[propName]) {
     return value[propName];
   }
   if (!fieldTemplates) {
