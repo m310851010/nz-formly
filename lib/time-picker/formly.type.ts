@@ -1,7 +1,7 @@
-import { DatePipe } from '@angular/common';
 import { TemplateRef } from '@angular/core';
 import { ControlOptions, NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { NzTimePickerComponent } from 'ng-zorro-antd/time-picker';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * 多行文本模板配置
@@ -117,6 +117,6 @@ export interface TimePickerOptions extends ControlOptions {
 /**
  *  grid配置
  */
-export interface TimePickerFieldConfig extends NzFormlyFieldConfig<TimePickerOptions> {
+export interface TimePickerFieldConfig extends NzFormlyFieldConfig<TimePickerOptions & FieldWrapperOptions> {
   type: 'textarea';
 }

@@ -1,6 +1,7 @@
 import { ControlOptions, NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { TemplateRef } from '@angular/core';
 import { NzRateComponent } from 'ng-zorro-antd/rate';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * Rate模板配置
@@ -51,12 +52,11 @@ export interface RateOptions extends ControlOptions {
    * 按键回调
    */
   nzOnKeyDown?: (evt: KeyboardEvent, field: RateFieldConfig, instance: NzRateComponent) => void;
-
 }
 
 /**
  * rate配置
  */
-export interface RateFieldConfig extends NzFormlyFieldConfig<RateOptions> {
+export interface RateFieldConfig extends NzFormlyFieldConfig<RateOptions & FieldWrapperOptions> {
   type: 'rate';
 }

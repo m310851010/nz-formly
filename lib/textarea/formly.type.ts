@@ -1,5 +1,6 @@
 import { ControlOptions, NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { BaseInputOptions } from '@xmagic/nz-formly/input';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * 多行文本模板配置
@@ -20,6 +21,6 @@ export type TextareaOptions = BaseInputOptions & BaseTextareaOptions;
 /**
  *  grid配置
  */
-export interface TextareaFieldConfig extends NzFormlyFieldConfig<TextareaOptions> {
+export interface TextareaFieldConfig extends NzFormlyFieldConfig<TextareaOptions & FieldWrapperOptions> {
   type: 'textarea';
 }

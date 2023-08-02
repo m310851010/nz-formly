@@ -1,6 +1,7 @@
 import { ControlOptions, NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { TemplateRef } from '@angular/core';
 import { NzSafeAny, NzSizeDSType } from 'ng-zorro-antd/core/types';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * Switch模板配置
@@ -45,6 +46,6 @@ export interface SwitchOptions extends ControlOptions {
 /**
  * Switch配置
  */
-export interface SwitchFieldConfig extends NzFormlyFieldConfig<SwitchOptions> {
+export interface SwitchFieldConfig extends NzFormlyFieldConfig<SwitchOptions & FieldWrapperOptions> {
   type: 'switch';
 }

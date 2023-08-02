@@ -15,6 +15,7 @@ import { FormlyBoxTemplates, hasTplNameValue, resolveTplName } from '@xmagic/nz-
           [nzTooltipTitle]="nzTooltipTitle"
           [nzTooltipIcon]="props.nzTooltipIcon"
           [nzSpan]="props.labelNzSpan || formState.labelNzSpan"
+          [nzNoColon]="props.nzNoColon || formState.nzNoColon"
           [nzFlex]="props.labelNzFlex || formState.labelNzFlex"
           [nzLg]="props.labelNzLg || formState.labelNzLg"
           [nzMd]="props.labelNzMd || formState.labelNzMd"
@@ -39,6 +40,9 @@ import { FormlyBoxTemplates, hasTplNameValue, resolveTplName } from '@xmagic/nz-
         [nzErrorTip]="errorTip"
         [nzAutoTips]="props.nzAutoTips || formState.nzAutoTips"
         [nzHasFeedback]="props.nzHasFeedback || formState.nzHasFeedback"
+        [nzSuccessTip]="nzSuccessTip || formState.nzSuccessTip"
+        [nzValidatingTip]="nzValidatingTip || formState.nzValidatingTip"
+        [nzWarningTip]="nzWarningTip || formState.nzWarningTip"
         [nzDisableAutoTips]="props.nzDisableAutoTips || formState.nzDisableAutoTips"
         [nzExtra]="props.description || nzExtra"
         [nzSpan]="props.controlNzSpan || formState.controlNzSpan"
@@ -81,12 +85,21 @@ export class FieldWrapperComponent extends FieldWrapper {
   get label() {
     return resolveTplName(this.props, this.fieldTemplates, 'label');
   }
+  get nzSuccessTip() {
+    return resolveTplName(this.props, this.fieldTemplates, 'nzSuccessTip');
+  }
+  get nzValidatingTip() {
+    return resolveTplName(this.props, this.fieldTemplates, 'nzValidatingTip');
+  }
+  get nzWarningTip() {
+    return resolveTplName(this.props, this.fieldTemplates, 'nzWarningTip');
+  }
 
   get hasError() {
     return (this.formControl?.dirty || this.formControl?.touched) && this.formControl.errors;
   }
 
   get validateStatus() {
-    return this.hasError ? 'error' : null;
+    return this.hasError ? 'error' : this.props.nzValidateStatus;
   }
 }

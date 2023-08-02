@@ -3,6 +3,7 @@ import { NzSafeAny, NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { AsyncFormlyOptions, ControlOptions, NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { NzInputNumberComponent } from 'ng-zorro-antd/input-number';
 import { OptionItem } from '@xmagic/nzx-antd/checkbox';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 export interface BaseInputOptions {
   /**
@@ -131,7 +132,7 @@ export interface BaseAutocompleteOptions extends ControlOptions {
   compareWith?: (o1: any, o2: any) => boolean;
 }
 
-export interface InputFieldConfig extends NzFormlyFieldConfig<InputOptions & BaseInputOptions> {
+export interface InputFieldConfig extends NzFormlyFieldConfig<InputOptions & BaseInputOptions & FieldWrapperOptions> {
   type: 'input';
 }
 
@@ -139,13 +140,14 @@ export interface InputFieldConfig extends NzFormlyFieldConfig<InputOptions & Bas
  * 	数值精度的取值方式
  */
 export interface InputNumberFieldConfig
-  extends NzFormlyFieldConfig<InputNumberOptions & Omit<BaseInputOptions, 'nzBorderless'>> {
+  extends NzFormlyFieldConfig<InputNumberOptions & Omit<BaseInputOptions, 'nzBorderless'> & FieldWrapperOptions> {
   type: 'number';
 }
 
 export type AutocompleteOptions = BaseAutocompleteOptions &
   AsyncFormlyOptions<NzSafeAny, OptionItem> &
-  BaseInputOptions;
+  BaseInputOptions &
+  FieldWrapperOptions;
 
 /**
  * 	数值精度的取值方式

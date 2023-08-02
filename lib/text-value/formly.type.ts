@@ -1,6 +1,7 @@
 import { ControlOptions, NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * Tabs模板配置
@@ -37,6 +38,6 @@ export interface TextOptions extends ControlOptions {
 /**
  * Tabs配置
  */
-export interface TextFieldConfig extends NzFormlyFieldConfig<TextOptions> {
+export interface TextFieldConfig extends NzFormlyFieldConfig<TextOptions & FieldWrapperOptions> {
   type: 'text';
 }

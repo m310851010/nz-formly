@@ -66,9 +66,10 @@ export type NzFormlyFieldType =
   | Omit<UploadFieldConfig, 'fieldGroup'>
   | Omit<CardFieldConfig, 'fieldGroup'>
   | Omit<AlertFieldConfig, 'fieldGroup'>
-  | Omit<TextFieldConfig, 'fieldGroup'>;
-// | Omit<FormlyFieldConfig, 'fieldGroup'>;
+  | Omit<TextFieldConfig, 'fieldGroup'>
+  | Omit<FormlyFieldConfig, 'fieldGroup'>;
 
 export type NzField = NzFormlyFieldType & {
   fieldGroup?: NzField[];
+  fieldArray?: NzField | ((field: NzField) => NzField);
 };

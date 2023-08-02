@@ -2,6 +2,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { BaseDatePickerOptions, DatePickerDateOptions } from '@xmagic/nz-formly/date-picker';
 import { NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { NzRangePickerComponent, PresetRanges } from 'ng-zorro-antd/date-picker';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * DateRangePicker配置项
@@ -31,6 +32,6 @@ export interface DatePickerRangeOptions
 /**
  *  DateRangePicker配置
  */
-export interface DateRangePickerFieldConfig extends NzFormlyFieldConfig<DateRangePickerOptions> {
+export interface DateRangePickerFieldConfig extends NzFormlyFieldConfig<DateRangePickerOptions & FieldWrapperOptions> {
   type: 'date-range-picker';
 }

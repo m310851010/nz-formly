@@ -154,7 +154,7 @@ export interface AsyncFormlyOptions<T extends NzSafeAny = NzSafeAny, U extends N
  */
 export type ControlOptions = DropdownWrapperOptions &
   Omit<FormlyFieldProps, 'options'> & {
-    valueChanges?: <V = NzSafeAny>(value: V, field: NzFormlyFieldConfig) => void;
+    valueChanges?: (value: NzSafeAny, field: NzFormlyFieldConfig) => void;
     attributes?: {
       style: string;
       class: string;

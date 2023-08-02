@@ -3,6 +3,7 @@ import { ControlOptions, NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { NzTreeComponent, NzTreeNode } from 'ng-zorro-antd/tree';
 import { NzFormatBeforeDropEvent, NzTreeNodeOptions, NzFormatEmitEvent } from 'ng-zorro-antd/tree';
 import { Observable } from 'rxjs';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * 多行文本模板配置
@@ -171,6 +172,6 @@ export interface TreeOptions extends ControlOptions {
 /**
  *  grid配置
  */
-export interface TreeFieldConfig extends NzFormlyFieldConfig<TreeOptions> {
+export interface TreeFieldConfig extends NzFormlyFieldConfig<TreeOptions & FieldWrapperOptions> {
   type: 'tree';
 }

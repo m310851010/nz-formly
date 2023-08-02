@@ -11,6 +11,7 @@ import {
 } from 'ng-zorro-antd/upload';
 import { Observable, Subscription } from 'rxjs';
 import { NzxUploadComponent } from '@xmagic/nzx-antd/upload';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * 多行文本模板配置
@@ -182,6 +183,6 @@ export interface UploadOptions extends ControlOptions {
 /**
  *  上传文件配置
  */
-export interface UploadFieldConfig extends NzFormlyFieldConfig<UploadOptions> {
+export interface UploadFieldConfig extends NzFormlyFieldConfig<UploadOptions & FieldWrapperOptions> {
   type: 'upload';
 }

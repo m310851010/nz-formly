@@ -26,7 +26,7 @@ export class FormlyFieldTextValueComponent<T> extends FieldType<TextFieldConfig>
 
   override defaultOptions = {
     props: {
-      defaultText: '--',
+      defaultText: '--'
     }
   };
 

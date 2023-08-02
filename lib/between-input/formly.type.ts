@@ -1,5 +1,6 @@
 import { ControlOptions, NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { BaseBetweenOptions } from './base-between.type';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * BetweenInput模板配置
@@ -46,6 +47,7 @@ export interface BetweenInputOptions extends ControlOptions {
   nzxEndFormatter?: (value: number | string) => string | number;
 }
 
-export interface BetweenInputFieldConfig extends NzFormlyFieldConfig<BetweenInputOptions & BaseBetweenOptions> {
+export interface BetweenInputFieldConfig
+  extends NzFormlyFieldConfig<BetweenInputOptions & BaseBetweenOptions & FieldWrapperOptions> {
   type: 'between-input';
 }

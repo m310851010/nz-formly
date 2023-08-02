@@ -3,6 +3,7 @@ import { NzSafeAny, NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { OptionItem } from '@xmagic/nzx-antd/checkbox';
 import { NzRadioButtonStyle } from 'ng-zorro-antd/radio';
 import { TemplateRef } from '@angular/core';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * Radio模板配置
@@ -50,7 +51,7 @@ export type RatioOptionItem = OptionItem & {
   afterIcon?: string;
 };
 
-export type RadioOptions = BaseRadioOptions & AsyncFormlyOptions<NzSafeAny, RatioOptionItem>;
+export type RadioOptions = BaseRadioOptions & AsyncFormlyOptions<NzSafeAny, RatioOptionItem> & FieldWrapperOptions;
 /**
  * radio配置
  */

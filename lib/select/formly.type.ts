@@ -4,6 +4,7 @@ import { NzOptionComponent, NzSelectComponent } from 'ng-zorro-antd/select';
 import { OptionItem } from '@xmagic/nzx-antd/checkbox';
 import { AutocompleteFieldConfig } from '@xmagic/nz-formly/input';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * Select模板配置
@@ -192,6 +193,6 @@ export type SelectOptions = BaseSelectOptions &
 /**
  * Select配置
  */
-export interface SelectFieldConfig extends NzFormlyFieldConfig<SelectOptions> {
+export interface SelectFieldConfig extends NzFormlyFieldConfig<SelectOptions & FieldWrapperOptions> {
   type: 'select';
 }

@@ -3,6 +3,7 @@ import { AsyncFormlyOptions, ControlOptions, NzFormlyFieldConfig } from '@xmagic
 import { NzTreeSelectComponent } from 'ng-zorro-antd/tree-select';
 import { NzFormatEmitEvent, NzTreeNode, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
 
 /**
  * 多行文本模板配置
@@ -142,12 +143,24 @@ export interface BaseTreeSelectOptions extends ControlOptions {
   /**
    * 点击展开树节点图标调用
    */
-  nzExpandChange?: (evt: NzFormatEmitEvent, field: NzFormlyFieldConfig<TreeSelectOptions>, instance: NzTreeSelectComponent) => void;
+  nzExpandChange?: (
+    evt: NzFormatEmitEvent,
+    field: NzFormlyFieldConfig<TreeSelectOptions>,
+    instance: NzTreeSelectComponent
+  ) => void;
   nzOpenChange?: (evt: boolean, field: NzFormlyFieldConfig<TreeSelectOptions>, instance: NzTreeSelectComponent) => void;
-  nzTreeCheckBoxChange?: (evt: NzFormatEmitEvent, field: NzFormlyFieldConfig<TreeSelectOptions>, instance: NzTreeSelectComponent) => void;
+  nzTreeCheckBoxChange?: (
+    evt: NzFormatEmitEvent,
+    field: NzFormlyFieldConfig<TreeSelectOptions>,
+    instance: NzTreeSelectComponent
+  ) => void;
   nzRemoved?: (evt: NzTreeNode, field: NzFormlyFieldConfig<TreeSelectOptions>, instance: NzTreeSelectComponent) => void;
   nzCleared?: (field: NzFormlyFieldConfig<TreeSelectOptions>, instance: NzTreeSelectComponent) => void;
-  nzTreeClick?: (evt: NzFormatEmitEvent, field: NzFormlyFieldConfig<TreeSelectOptions>, instance: NzTreeSelectComponent) => void;
+  nzTreeClick?: (
+    evt: NzFormatEmitEvent,
+    field: NzFormlyFieldConfig<TreeSelectOptions>,
+    instance: NzTreeSelectComponent
+  ) => void;
 }
 
 export type TreeSelectOptions = BaseTreeSelectOptions & AsyncFormlyOptions<NzSafeAny, NzTreeNodeOptions>;
@@ -155,6 +168,6 @@ export type TreeSelectOptions = BaseTreeSelectOptions & AsyncFormlyOptions<NzSaf
 /**
  *  grid配置
  */
-export interface TreeSelectFieldConfig extends NzFormlyFieldConfig<TreeSelectOptions> {
+export interface TreeSelectFieldConfig extends NzFormlyFieldConfig<TreeSelectOptions & FieldWrapperOptions> {
   type: 'tree-select';
 }
