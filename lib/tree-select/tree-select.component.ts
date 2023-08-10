@@ -6,49 +6,48 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
 @Component({
   selector: 'nz-formly-tree-select-component',
   template: `
-    <ng-container *ngIf="props.options | toAsync: $any(props) | async as nodesData">
+    <ng-container *ngIf="to.options | toAsync: $any(to) | async as nodesData">
       <nz-tree-select
         #instance
         [formControl]="$any(formControl)"
         [formlyAttributes]="field"
-        [nzStatus]="props.nzStatus"
         [nzExpandedIcon]="nzExpandedIcon"
-        [nzExpandedKeys]="props.nzExpandedKeys"
-        [nzAllowClear]="props.nzAllowClear"
-        [nzDisabled]="props.nzDisabled || props.disabled || formControl?.disabled"
-        [nzShowIcon]="props.nzShowIcon"
-        [nzNotFoundContent]="props.nzNotFoundContent"
-        [nzDropdownStyle]="props.nzDropdownStyle"
-        [nzMultiple]="props.nzMultiple"
-        [nzHideUnMatched]="props.nzHideUnMatched"
-        [nzDropdownClassName]="props.nzDropdownClassName"
-        [nzSize]="props.nzSize"
-        [nzCheckStrictly]="props.nzCheckStrictly"
-        [nzDropdownMatchSelectWidth]="props.nzDropdownMatchSelectWidth !== false"
+        [nzExpandedKeys]="to.nzExpandedKeys"
+        [nzAllowClear]="to.nzAllowClear"
+        [nzDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+        [nzShowIcon]="to.nzShowIcon"
+        [nzNotFoundContent]="to.nzNotFoundContent"
+        [nzDropdownStyle]="to.nzDropdownStyle"
+        [nzMultiple]="to.nzMultiple"
+        [nzHideUnMatched]="to.nzHideUnMatched"
+        [nzDropdownClassName]="to.nzDropdownClassName"
+        [nzSize]="to.nzSize"
+        [nzCheckStrictly]="to.nzCheckStrictly"
+        [nzDropdownMatchSelectWidth]="to.nzDropdownMatchSelectWidth !== false"
         [nzNodes]="$any(nodesData)"
-        [nzShowLine]="props.nzShowLine"
-        [nzDefaultExpandAll]="props.nzDefaultExpandAll"
-        [nzShowExpand]="props.nzShowExpand !== false"
-        [nzAsyncData]="props.nzAsyncData"
-        [nzShowSearch]="props.nzShowSearch"
-        [nzCheckable]="props.nzCheckable"
-        [nzPlaceHolder]="props.nzPlaceHolder || props.placeholder"
-        [nzDisplayWith]="props.nzDisplayWith"
-        [nzMaxTagCount]="props.nzMaxTagCount"
-        [nzMaxTagPlaceholder]="nzMaxTagPlaceholder"
-        [nzTreeTemplate]="nzTreeTemplate"
-        [nzVirtualHeight]="props.nzVirtualHeight"
-        [nzVirtualItemSize]="props.nzVirtualItemSize"
-        [nzVirtualMaxBufferPx]="props.nzVirtualMaxBufferPx"
-        [nzVirtualMinBufferPx]="props.nzVirtualMinBufferPx"
-        [nzBackdrop]="props.nzBackdrop"
-        [nzId]="field.id || props.nzId"
-        (nzExpandChange)="props.nzExpandChange?.($event, field, instance)"
-        (nzOpenChange)="props.nzOpenChange?.($event, field, instance)"
-        (nzTreeCheckBoxChange)="props.nzTreeCheckBoxChange?.($event, field, instance)"
-        (nzRemoved)="props.nzRemoved?.($event, field, instance)"
-        (nzCleared)="props.nzCleared?.(field, instance)"
-        (nzTreeClick)="props.nzTreeClick?.($event, field, instance)"
+        [nzShowLine]="to.nzShowLine"
+        [nzDefaultExpandAll]="to.nzDefaultExpandAll"
+        [nzShowExpand]="to.nzShowExpand !== false"
+        [nzAsyncData]="to.nzAsyncData"
+        [nzShowSearch]="to.nzShowSearch"
+        [nzCheckable]="to.nzCheckable"
+        [nzPlaceHolder]="to.nzPlaceHolder || to.placeholder"
+        [nzDisplayWith]="to.nzDisplayWith"
+        [nzMaxTagCount]="to.nzMaxTagCount"
+        [nzMaxTagPlaceholder]="nzMaxTagPlaceholder!"
+        [nzTreeTemplate]="nzTreeTemplate!"
+        [nzVirtualHeight]="to.nzVirtualHeight"
+        [nzVirtualItemSize]="to.nzVirtualItemSize"
+        [nzVirtualMaxBufferPx]="to.nzVirtualMaxBufferPx"
+        [nzVirtualMinBufferPx]="to.nzVirtualMinBufferPx"
+        [nzBackdrop]="to.nzBackdrop"
+        [nzId]="field.id || to.nzId"
+        (nzExpandChange)="to.nzExpandChange && to.nzExpandChange($event, field, instance)"
+        (nzOpenChange)="to.nzOpenChange && to.nzOpenChange($event, field, instance)"
+        (nzTreeCheckBoxChange)="to.nzTreeCheckBoxChange && to.nzTreeCheckBoxChange($event, field, instance)"
+        (nzRemoved)="to.nzRemoved && to.nzRemoved($event, field, instance)"
+        (nzCleared)="to.nzCleared && to.nzCleared(field, instance)"
+        (nzTreeClick)="to.nzTreeClick && to.nzTreeClick($event, field, instance)"
         ngDefaultControl
       ></nz-tree-select>
     </ng-container>
@@ -56,8 +55,8 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldTreeSelectComponent extends FieldType {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzDisplayWith: (node: NzTreeNode) => node.title,
       options: [],
       nzVirtualItemSize: 28,
@@ -73,13 +72,13 @@ export class FormlyFieldTreeSelectComponent extends FieldType {
   }
 
   get nzExpandedIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzExpandedIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzExpandedIcon');
   }
 
   get nzMaxTagPlaceholder() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzMaxTagPlaceholder');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzMaxTagPlaceholder');
   }
   get nzTreeTemplate() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzTreeTemplate');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzTreeTemplate');
   }
 }

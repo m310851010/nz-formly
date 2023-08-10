@@ -8,16 +8,16 @@ import { FormlyBoxTemplates, resolveTplName, resolveTplNameArray } from '@xmagic
     <nz-card
       [nzTitle]="nzTitle"
       [formlyAttributes]="field"
-      [nzBorderless]="props.nzBorderless"
+      [nzBorderless]="to.nzBorderless"
       [nzCover]="nzCover"
       [nzExtra]="nzExtra"
-      [nzHoverable]="props.nzHoverable"
-      [nzLoading]="props.nzLoading"
+      [nzHoverable]="to.nzHoverable"
+      [nzLoading]="to.nzLoading"
       [nzActions]="nzActions"
-      [nzBodyStyle]="props.nzBodyStyle"
-      [nzBordered]="props.nzBordered"
-      [nzType]="props.nzType"
-      [nzSize]="props.nzSize"
+      [nzBodyStyle]="to.nzBodyStyle"
+      [nzBordered]="to.nzBordered"
+      [nzType]="to.nzType"
+      [nzSize]="to.nzSize"
     >
       <ng-container #fieldComponent></ng-container>
     </nz-card>
@@ -30,15 +30,15 @@ export class CardWrapperComponent extends FieldWrapper {
   }
 
   get nzTitle() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzTitle');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzTitle');
   }
   get nzCover() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzCover');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzCover');
   }
   get nzExtra() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzExtra');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzExtra');
   }
   get nzActions() {
-    return resolveTplNameArray(this.props, this.fieldTemplates, 'nzActions') || [];
+    return resolveTplNameArray(this.to, this.fieldTemplates, 'nzActions') || [];
   }
 }

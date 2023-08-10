@@ -9,50 +9,50 @@ import { TreeOptions } from './formly.type'
     <nz-tree
       #instance
       [formlyAttributes]="field"
-      [nzData]="props.nzData | toAsync: $any(props) | async"
-      [nzBlockNode]="props.nzBlockNode"
-      [nzCheckable]="props.nzCheckable"
-      [nzShowExpand]="props.nzShowExpand"
-      [nzShowIcon]="props.nzShowIcon"
-      [nzAsyncData]="props.nzAsyncData"
-      [nzBeforeDrop]="props.nzBeforeDrop"
-      [nzCheckedKeys]="props.nzCheckedKeys"
-      [nzCheckStrictly]="props.nzCheckStrictly"
-      [nzDraggable]="props.nzDraggable"
-      [nzExpandAll]="props.nzExpandAll"
+      [nzData]="to.nzData | toAsync: $any(to) | async"
+      [nzBlockNode]="to.nzBlockNode"
+      [nzCheckable]="to.nzCheckable"
+      [nzShowExpand]="to.nzShowExpand"
+      [nzShowIcon]="to.nzShowIcon"
+      [nzAsyncData]="to.nzAsyncData"
+      [nzBeforeDrop]="to.nzBeforeDrop"
+      [nzCheckedKeys]="to.nzCheckedKeys"
+      [nzCheckStrictly]="to.nzCheckStrictly"
+      [nzDraggable]="to.nzDraggable"
+      [nzExpandAll]="to.nzExpandAll"
       [nzExpandedIcon]="nzExpandedIcon"
-      [nzExpandedKeys]="props.nzExpandedKeys"
-      [nzHideUnMatched]="props.nzHideUnMatched"
-      [nzMultiple]="props.nzMultiple"
-      [nzSearchFunc]="props.nzSearchFunc"
-      [nzSearchValue]="props.nzSearchValue"
-      [nzSelectedKeys]="props.nzSelectedKeys"
-      [nzSelectMode]="props.nzSelectMode"
-      [nzShowLine]="props.nzShowLine"
-      [nzVirtualHeight]="props.nzVirtualHeight"
-      [nzVirtualItemSize]="props.nzVirtualItemSize"
-      [nzVirtualMaxBufferPx]="props.nzVirtualMaxBufferPx"
-      [nzVirtualMinBufferPx]="props.nzVirtualMinBufferPx"
+      [nzExpandedKeys]="to.nzExpandedKeys"
+      [nzHideUnMatched]="to.nzHideUnMatched"
+      [nzMultiple]="to.nzMultiple"
+      [nzSearchFunc]="to.nzSearchFunc"
+      [nzSearchValue]="to.nzSearchValue"
+      [nzSelectedKeys]="to.nzSelectedKeys"
+      [nzSelectMode]="to.nzSelectMode"
+      [nzShowLine]="to.nzShowLine"
+      [nzVirtualHeight]="to.nzVirtualHeight"
+      [nzVirtualItemSize]="to.nzVirtualItemSize"
+      [nzVirtualMaxBufferPx]="to.nzVirtualMaxBufferPx"
+      [nzVirtualMinBufferPx]="to.nzVirtualMinBufferPx"
       [nzTreeTemplate]="nzTreeTemplate"
-      (nzClick)="props.nzClick?.($event, field, instance)"
-      (nzDblClick)="props.nzDblClick?.($event, field, instance)"
-      (nzContextMenu)="props.nzContextMenu?.($event, field, instance)"
-      (nzCheckBoxChange)="props.nzCheckBoxChange?.($event, field, instance)"
-      (nzExpandChange)="props.nzExpandChange?.($event, field, instance)"
-      (nzSearchValueChange)="props.nzSearchValueChange?.($event, field, instance)"
-      (nzOnDragStart)="props.nzOnDragStart?.($event, field, instance)"
-      (nzOnDragEnter)="props.nzOnDragEnter?.($event, field, instance)"
-      (nzOnDragOver)="props.nzOnDragOver?.($event, field, instance)"
-      (nzOnDragLeave)="props.nzOnDragLeave?.($event, field, instance)"
-      (nzOnDrop)="props.nzOnDrop?.($event, field, instance)"
-      (nzOnDragEnd)="props.nzOnDragEnd?.($event, field, instance)"
+      (nzClick)="to.nzClick && to.nzClick($event, field, instance)"
+      (nzDblClick)="to.nzDblClick && to.nzDblClick($event, field, instance)"
+      (nzContextMenu)="to.nzContextMenu && to.nzContextMenu($event, field, instance)"
+      (nzCheckBoxChange)="to.nzCheckBoxChange && to.nzCheckBoxChange($event, field, instance)"
+      (nzExpandChange)="to.nzExpandChange && to.nzExpandChange($event, field, instance)"
+      (nzSearchValueChange)="to.nzSearchValueChange && to.nzSearchValueChange($event, field, instance)"
+      (nzOnDragStart)="to.nzOnDragStart && to.nzOnDragStart($event, field, instance)"
+      (nzOnDragEnter)="to.nzOnDragEnter && to.nzOnDragEnter($event, field, instance)"
+      (nzOnDragOver)="to.nzOnDragOver && to.nzOnDragOver($event, field, instance)"
+      (nzOnDragLeave)="to.nzOnDragLeave && to.nzOnDragLeave($event, field, instance)"
+      (nzOnDrop)="to.nzOnDrop && to.nzOnDrop($event, field, instance)"
+      (nzOnDragEnd)="to.nzOnDragEnd && to.nzOnDragEnd($event, field, instance)"
     ></nz-tree>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldTreeComponent extends FieldType<NzFormlyFieldConfig<TreeOptions>> {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzShowExpand: true,
       nzData: [],
       nzSelectedKeys: [],
@@ -69,9 +69,9 @@ export class FormlyFieldTreeComponent extends FieldType<NzFormlyFieldConfig<Tree
   }
 
   get nzTreeTemplate() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzTreeTemplate');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzTreeTemplate');
   }
   get nzExpandedIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzExpandedIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzExpandedIcon');
   }
 }

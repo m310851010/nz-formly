@@ -8,18 +8,18 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
     <nz-radio-group
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [nzName]="props.nzName"
-      [nzDisabled]="props.nzDisabled || props.disabled || formControl?.disabled"
-      [nzSize]="props.nzSize"
-      [nzButtonStyle]="props.nzButtonStyle"
+      [nzName]="to.nzName"
+      [nzDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+      [nzSize]="to.nzSize"
+      [nzButtonStyle]="to.nzButtonStyle"
       ngDefaultControl
     >
-      <ng-container *ngIf="props.type !== 'button'; else buttonTemplate">
-        <ng-container *ngFor="let item of props.options | toAsync: $any(props) | async">
+      <ng-container *ngIf="to.type !== 'button'; else buttonTemplate">
+        <ng-container *ngFor="let item of to.options | toAsync: $any(to) | async">
           <label
             *ngIf="item.hide !== false"
             nz-radio
-            [formlyAttributes]="{ props: item }"
+            [formlyAttributes]="{ templateOptions: item }"
             [nzDisabled]="item.disabled"
             [nzValue]="item.value"
           >
@@ -31,11 +31,11 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
       </ng-container>
 
       <ng-template #buttonTemplate>
-        <ng-container *ngFor="let item of props.options | toAsync: $any(props) | async">
+        <ng-container *ngFor="let item of to.options | toAsync: $any(to) | async">
           <label
             *ngIf="item.hide !== false"
             nz-radio-button
-            [formlyAttributes]="{ props: item }"
+            [formlyAttributes]="{ templateOptions: item }"
             [nzDisabled]="item.disabled"
             [nzValue]="item.value"
           >
@@ -58,8 +58,8 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldRadioComponent extends FieldType {
-  override defaultOptions = {
-    props: { nzSize: 'default', options: [] }
+  defaultOptions = {
+    templateOptions: { nzSize: 'default', options: [] }
   };
 
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {
@@ -67,6 +67,6 @@ export class FormlyFieldRadioComponent extends FieldType {
   }
 
   get labelTemplate() {
-    return resolveTplName(this.props, this.fieldTemplates, 'labelTemplate');
+    return resolveTplName(this.to, this.fieldTemplates, 'labelTemplate');
   }
 }

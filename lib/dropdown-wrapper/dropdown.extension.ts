@@ -1,11 +1,11 @@
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
 export function dropdownExtension(field: FormlyFieldConfig) {
-  if (!field.props || (field.wrappers && field.wrappers.indexOf('dropdown-wrapper') !== -1)) {
+  if (!field.templateOptions || (field.wrappers && field.wrappers.indexOf('dropdown-wrapper') !== -1)) {
     return;
   }
 
-  if (field.props?.nzDropdown?.ref) {
+  if (field.templateOptions?.nzDropdown?.ref) {
     field.wrappers = [...(field.wrappers || []), 'dropdown-wrapper'];
   }
 }

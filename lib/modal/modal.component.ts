@@ -1,56 +1,56 @@
 import { Component, OnInit, Optional, ViewChild } from '@angular/core';
 import { FieldType } from '@ngx-formly/core';
 import { NzModalComponent } from 'ng-zorro-antd/modal';
-import { FormlyFieldConfig } from '@ngx-formly/core/lib/models';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
 
 @Component({
   selector: 'nz-formly-modal',
   template: `
     <nz-modal
-      *ngIf="props.nzVisible"
+      *ngIf="to.nzVisible"
       #nzModal
       nzxModalDrag
       [nzVisible]="true"
-      [nzTitle]="props.label || nzTitle"
+      [nzTitle]="to.label || nzTitle"
       [formlyAttributes]="field"
-      [nzAutofocus]="props.nzAutofocus"
-      [nzBodyStyle]="props.nzBodyStyle"
-      [nzCancelDisabled]="props.nzCancelDisabled"
-      [nzCancelLoading]="props.nzCancelLoading"
-      [nzCancelText]="props.nzCancelText"
-      [nzCentered]="props.nzCentered"
-      [nzClassName]="props.nzClassName"
-      [nzClosable]="props.nzClosable"
+      [nzAutofocus]="to.nzAutofocus"
+      [nzBodyStyle]="to.nzBodyStyle"
+      [nzCancelDisabled]="to.nzCancelDisabled"
+      [nzCancelLoading]="to.nzCancelLoading"
+      [nzCancelText]="to.nzCancelText"
+      [nzCentered]="to.nzCentered"
+      [nzClassName]="to.nzClassName"
+      [nzClosable]="to.nzClosable"
       [nzCloseIcon]="nzCloseIcon"
-      [nzCloseOnNavigation]="props.nzCloseOnNavigation"
-      [nzComponentParams]="props.nzComponentParams"
+      [nzCloseOnNavigation]="to.nzCloseOnNavigation"
+      [nzComponentParams]="to.nzComponentParams"
       [nzFooter]="nzFooter"
-      [nzIconType]="props.nzIconType"
-      [nzKeyboard]="props.nzKeyboard"
-      [nzMask]="props.nzMask"
-      [nzMaskClosable]="props.nzMaskClosable"
-      [nzMaskStyle]="props.nzMaskStyle"
-      [nzModalType]="props.nzModalType"
-      [nzNoAnimation]="props.nzNoAnimation"
-      [nzOkDanger]="props.nzOkDanger"
-      [nzOkDisabled]="props.nzOkDisabled"
-      [nzOkLoading]="props.nzOkLoading"
-      [nzOkText]="props.nzOkText"
-      [nzOkType]="props.nzOkType"
-      [nzStyle]="props.nzStyle"
-      [nzWidth]="props.nzWidth"
-      [nzWrapClassName]="props.nzWrapClassName"
-      [nzZIndex]="props.nzZIndex"
-      (nzAfterClose)="props.onAfterClose?.(field, instance)"
-      (nzAfterOpen)="props.nzAfterOpen?.(field, instance)"
-      (nzOnCancel)="props.nzOnCancel(field, instance)"
-      (nzOnOk)="props.nzOnOk(field, instance)"
-      (nzVisibleChange)="props.nzVisibleChange?.($event, field)"
+      [nzIconType]="to.nzIconType"
+      [nzKeyboard]="to.nzKeyboard"
+      [nzMask]="to.nzMask"
+      [nzMaskClosable]="to.nzMaskClosable"
+      [nzMaskStyle]="to.nzMaskStyle"
+      [nzModalType]="to.nzModalType"
+      [nzNoAnimation]="to.nzNoAnimation"
+      [nzOkDanger]="to.nzOkDanger"
+      [nzOkDisabled]="to.nzOkDisabled"
+      [nzOkLoading]="to.nzOkLoading"
+      [nzOkText]="to.nzOkText"
+      [nzOkType]="to.nzOkType"
+      [nzStyle]="to.nzStyle"
+      [nzWidth]="to.nzWidth"
+      [nzWrapClassName]="to.nzWrapClassName"
+      [nzZIndex]="to.nzZIndex"
+      (nzAfterClose)="to.onAfterClose && to.onAfterClose(field, instance)"
+      (nzAfterOpen)="to.nzAfterOpen && to.nzAfterOpen(field, instance)"
+      (nzOnCancel)="to.nzOnCancel(field, instance)"
+      (nzOnOk)="to.nzOnOk(field, instance)"
+      (nzVisibleChange)="to.nzVisibleChange && to.nzVisibleChange($event, field)"
     >
       <ng-container *nzModalContent>
         <formly-field [field]="item" *ngFor="let item of field.fieldGroup"></formly-field>
-        <ng-container *nzStringTemplateOutlet="nzContent; context: { $implicit: field, options: props }">
+        <ng-container *nzStringTemplateOutlet="nzContent; context: { $implicit: field, options: to }">
           {{ nzContent }}
         </ng-container>
       </ng-container>
@@ -59,8 +59,8 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
 })
 export class FormlyFieldModalComponent extends FieldType implements OnInit {
   @ViewChild('nzModal', { static: true }) instance!: NzModalComponent;
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzOkType: 'primary',
       nzCloseOnNavigation: true,
       nzMaskClosable: false,
@@ -72,8 +72,8 @@ export class FormlyFieldModalComponent extends FieldType implements OnInit {
       nzWidth: 520,
       nzVisible: false,
       nzCloseIcon: 'close',
-      nzOnCancel: (field: FormlyFieldConfig, instance: NzModalComponent) => (field.props!.nzVisible = false),
-      nzOnOk: (field: FormlyFieldConfig, instance: NzModalComponent) => (field.props!.nzVisible = false)
+      nzOnCancel: (field: FormlyFieldConfig, instance: NzModalComponent) => (field.templateOptions!.nzVisible = false),
+      nzOnOk: (field: FormlyFieldConfig, instance: NzModalComponent) => (field.templateOptions!.nzVisible = false)
     }
   };
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {
@@ -81,23 +81,23 @@ export class FormlyFieldModalComponent extends FieldType implements OnInit {
   }
 
   ngOnInit(): void {
-    this.props.instance = this.instance;
-    this.props.init?.(this.instance, this);
+    this.to.instance = this.instance;
+    this.to.init?.(this.instance, this);
   }
 
   get nzTitle() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzTitle');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzTitle');
   }
 
   get nzFooter() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzFooter');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzFooter');
   }
 
   get nzCloseIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzCloseIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzCloseIcon');
   }
 
   get nzContent() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzContent');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzContent');
   }
 }

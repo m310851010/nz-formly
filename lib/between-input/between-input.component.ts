@@ -7,35 +7,35 @@ import { FieldType } from '@ngx-formly/core';
     <nzx-between-input
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [nzxType]="props.nzxType"
-      [nzxStartPlaceholder]="props.nzxStartPlaceholder"
-      [nzxEndPlaceholder]="props.nzxEndPlaceholder"
-      [nzxEndDisabled]="props.nzxEndDisabled"
-      [nzxStartDisabled]="props.nzxStartDisabled"
-      [nzxEndReName]="props.nzxEndReName"
-      [nzxStartReName]="props.nzxStartReName"
-      [nzxStarPrecision]="props.nzxStarPrecision"
-      [nzxEndPrecision]="props.nzxEndPrecision"
-      [nzxStarStep]="props.nzxStarStep"
-      [nzxEndStep]="props.nzxEndStep"
-      [nzxEndFormatter]="props.nzxEndFormatter"
-      [nzxStartFormatter]="props.nzxStartFormatter"
-      [nzxStarId]="props.nzxStarId"
-      [nzxEndId]="props.nzxEndId"
-      [nzxSize]="props.nzxSize"
-      [nzxEndMax]="props.nzxEndMax"
-      [nzxEndMin]="props.nzxEndMin"
-      [nzxStartMax]="props.nzxStartMax"
-      [nzxStartMin]="props.nzxStartMin"
-      [nzxDisabled]="props.disabled || formControl?.disabled"
+      [nzxType]="to.nzxType"
+      [nzxStartPlaceholder]="to.nzxStartPlaceholder"
+      [nzxEndPlaceholder]="to.nzxEndPlaceholder"
+      [nzxEndDisabled]="to.nzxEndDisabled"
+      [nzxStartDisabled]="to.nzxStartDisabled"
+      [nzxEndReName]="to.nzxEndReName"
+      [nzxStartReName]="to.nzxStartReName"
+      [nzxStarPrecision]="to.nzxStarPrecision"
+      [nzxEndPrecision]="to.nzxEndPrecision"
+      [nzxStarStep]="to.nzxStarStep"
+      [nzxEndStep]="to.nzxEndStep"
+      [nzxEndFormatter]="to.nzxEndFormatter"
+      [nzxStartFormatter]="to.nzxStartFormatter"
+      [nzxStarId]="to.nzxStarId"
+      [nzxEndId]="to.nzxEndId"
+      [nzxSize]="to.nzxSize"
+      [nzxEndMax]="to.nzxEndMax"
+      [nzxEndMin]="to.nzxEndMin"
+      [nzxStartMax]="to.nzxStartMax"
+      [nzxStartMin]="to.nzxStartMin"
+      [nzxDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
       ngDefaultControl
     ></nzx-between-input>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldBetweenInputComponent extends FieldType {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzxSize: 'default',
       nzxType: 'input',
       nzxStartPlaceholder: '起始值',

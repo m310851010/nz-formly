@@ -5,14 +5,20 @@ import { FormlyExtension } from '@ngx-formly/core';
  */
 export const defaultPlaceholderExtension: FormlyExtension = {
   prePopulate(field): void {
-    if (!field.props?.label || field.props?.placeholder !== undefined || field.props?.nzPlaceholder !== undefined) {
+    if (
+      !field.templateOptions?.label ||
+      field.templateOptions?.placeholder !== undefined ||
+      field.templateOptions?.nzPlaceholder !== undefined
+    ) {
       return;
     }
     const selectable = ['select', 'tree-select', 'cascader', 'date-picker', 'time-picker'];
-    field.props = {
-      ...field.props,
+    field.templateOptions = {
+      ...field.templateOptions,
       placeholder:
-        selectable.indexOf(field.type as string) >= 0 ? `请选择${field.props?.label}` : `请输入${field.props?.label}`
+        selectable.indexOf(field.type as string) >= 0
+          ? `请选择${field.templateOptions?.label}`
+          : `请输入${field.templateOptions?.label}`
     };
   }
 };

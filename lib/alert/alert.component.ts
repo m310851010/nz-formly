@@ -9,23 +9,22 @@ import { AlertOptions } from './formly.type';
     <nz-alert
       #instance
       [formlyAttributes]="field"
-      [nzBanner]="props.nzBanner"
-      [nzMessage]="nzMessage"
-      [nzAction]="nzAction"
-      [nzCloseable]="props.nzCloseable"
-      [nzCloseText]="nzCloseText"
-      [nzDescription]="nzDescription"
-      [nzIconType]="props.nzIconType"
-      [nzShowIcon]="props.nzShowIcon"
-      [nzType]="props.nzType"
-      (nzOnClose)="props.nzOnClose?.($event, field, instance)"
+      [nzBanner]="to.nzBanner"
+      [nzMessage]="nzMessage!"
+      [nzCloseable]="to.nzCloseable"
+      [nzCloseText]="nzCloseText!"
+      [nzDescription]="nzDescription!"
+      [nzIconType]="to.nzIconType"
+      [nzShowIcon]="to.nzShowIcon"
+      [nzType]="to.nzType"
+      (nzOnClose)="to.nzOnClose && to.nzOnClose($event, field, instance)"
     ></nz-alert>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldAlertComponent extends FieldType<NzFormlyFieldConfig<AlertOptions>> {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzType: 'info'
     } as AlertOptions
   };
@@ -35,15 +34,12 @@ export class FormlyFieldAlertComponent extends FieldType<NzFormlyFieldConfig<Ale
   }
 
   get nzDescription() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzDescription');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzDescription');
   }
   get nzMessage() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzMessage');
-  }
-  get nzAction() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzAction');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzMessage');
   }
   get nzCloseText() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzCloseText');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzCloseText');
   }
 }

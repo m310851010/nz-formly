@@ -5,19 +5,19 @@ import { FieldType } from '@ngx-formly/core';
   selector: 'nz-formly-textarea',
   template: `
     <nz-textarea-count
-      *ngIf="props.nzMaxCharacterCount != null; else templateRef"
-      [nzMaxCharacterCount]="props.nzMaxCharacterCount"
-      [nzComputeCharacterCount]="props.nzComputeCharacterCount"
+      *ngIf="to.nzMaxCharacterCount != null; else templateRef"
+      [nzMaxCharacterCount]="to.nzMaxCharacterCount"
+      [nzComputeCharacterCount]="to.nzComputeCharacterCount"
     >
       <textarea
         nz-input
         [formControl]="$any(formControl)"
         [formlyAttributes]="field"
-        [rows]="props.rows"
-        [attr.placeholder]="props.placeholder"
-        [nzAutosize]="props.nzAutosize"
-        [nzBorderless]="props.nzBorderless"
-        [nzSize]="props.nzSize"
+        [rows]="to.rows"
+        [attr.placeholder]="to.placeholder"
+        [nzAutosize]="to.nzAutosize"
+        [nzBorderless]="to.nzBorderless"
+        [nzSize]="to.nzSize"
         maxlength=""
       ></textarea>
     </nz-textarea-count>
@@ -27,18 +27,18 @@ import { FieldType } from '@ngx-formly/core';
         nz-input
         [formControl]="$any(formControl)"
         [formlyAttributes]="field"
-        [rows]="props.rows"
-        [attr.placeholder]="props.placeholder || ''"
-        [nzAutosize]="props.nzAutosize == null ? false : props.nzAutosize"
-        [nzBorderless]="props.nzBorderless"
-        [nzSize]="props.nzSize"
+        [rows]="to.rows"
+        [attr.placeholder]="to.placeholder || ''"
+        [nzAutosize]="to.nzAutosize == null ? false : to.nzAutosize"
+        [nzBorderless]="to.nzBorderless"
+        [nzSize]="to.nzSize"
         maxlength=""
       ></textarea>
     </ng-template>
   `
 })
 export class FormlyFieldTextareaComponent extends FieldType {
-  override defaultOptions = {
-    props: { nzComputeCharacterCount: (v: string) => v.length, nzAutosize: false, nzSize: 'default', rows: 2 }
+  defaultOptions = {
+    templateOptions: { nzComputeCharacterCount: (v: string) => v.length, nzAutosize: false, nzSize: 'default', rows: 2 }
   };
 }

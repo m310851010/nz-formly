@@ -9,8 +9,8 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldSelectComponent extends FieldType {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       options: [],
       nzMode: 'default',
       nzAutoClearSearchValue: true,
@@ -37,27 +37,27 @@ export class FormlyFieldSelectComponent extends FieldType {
   }
 
   get nzCustomTemplate() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzCustomTemplate');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzCustomTemplate');
   }
   get nzSuffixIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzSuffixIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzSuffixIcon');
   }
   get nzRemoveIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzRemoveIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzRemoveIcon');
   }
   get nzClearIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzClearIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzClearIcon');
   }
   get nzMenuItemSelectedIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzMenuItemSelectedIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzMenuItemSelectedIcon');
   }
   get nzMaxTagPlaceholder() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzMaxTagPlaceholder');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzMaxTagPlaceholder');
   }
   get nzNotFoundContent() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzNotFoundContent');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzNotFoundContent');
   }
   get labelTemplate() {
-    return resolveTplName(this.props, this.fieldTemplates, 'labelTemplate');
+    return resolveTplName(this.to, this.fieldTemplates, 'labelTemplate');
   }
 }

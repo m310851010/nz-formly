@@ -10,63 +10,61 @@ import { BetweenTimeOptions } from './formly.type';
       #instance
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [startMinDateTime]="props.startMinDateTime"
-      [startMaxDateTime]="props.startMaxDateTime"
-      [endMaxDateTime]="props.endMaxDateTime"
-      [endMinDateTime]="props.endMinDateTime"
-      [nzFormat]="props.nzFormat"
-      [nzxDisabled]="props.nzxDisabled"
-      [nzxEndAutoFocus]="props.nzxEndAutoFocus"
-      [nzxEndBackdrop]="props.nzxEndBackdrop"
-      [nzxSize]="props.nzxSize"
-      [nzxEndDisabled]="props.nzxEndDisabled"
-      [nzxEndId]="props.nzxEndId"
-      [nzxEndPlaceholder]="props.nzxEndPlaceholder"
-      [nzxEndReName]="props.nzxEndReName"
-      [nzxStartId]="props.nzxStartId"
-      [nzxStartStatus]="props.nzxStartStatus"
-      [nzxStartHourStep]="props.nzxStartHourStep"
-      [nzxStartMinuteStep]="props.nzxStartMinuteStep"
-      [nzxStartSecondStep]="props.nzxStartSecondStep"
-      [nzxStartClearText]="props.nzxStartClearText"
-      [nzxStartNowText]="props.nzxStartNowText"
-      [nzxStartOkText]="props.nzxStartOkText"
-      [nzxStartPopupClassName]="props.nzxStartPopupClassName"
-      [nzxStartPlaceholder]="props.nzxStartPlaceholder"
+      [startMinDateTime]="to.startMinDateTime"
+      [startMaxDateTime]="to.startMaxDateTime"
+      [endMaxDateTime]="to.endMaxDateTime"
+      [endMinDateTime]="to.endMinDateTime"
+      [nzFormat]="to.nzFormat"
+      [nzxDisabled]="to.nzxDisabled"
+      [nzxEndAutoFocus]="to.nzxEndAutoFocus"
+      [nzxEndBackdrop]="to.nzxEndBackdrop"
+      [nzxSize]="to.nzxSize"
+      [nzxEndDisabled]="to.nzxEndDisabled"
+      [nzxEndId]="to.nzxEndId"
+      [nzxEndPlaceholder]="to.nzxEndPlaceholder"
+      [nzxEndReName]="to.nzxEndReName"
+      [nzxStartId]="to.nzxStartId"
+      [nzxStartHourStep]="to.nzxStartHourStep"
+      [nzxStartMinuteStep]="to.nzxStartMinuteStep"
+      [nzxStartSecondStep]="to.nzxStartSecondStep"
+      [nzxStartClearText]="to.nzxStartClearText"
+      [nzxStartNowText]="to.nzxStartNowText"
+      [nzxStartOkText]="to.nzxStartOkText"
+      [nzxStartPopupClassName]="to.nzxStartPopupClassName"
+      [nzxStartPlaceholder]="to.nzxStartPlaceholder"
       [nzxStartAddOn]="nzxStartAddOn"
-      [nzxStartDefaultOpenValue]="props.nzxStartDefaultOpenValue"
-      [nzxStartUse12Hours]="props.nzxStartUse12Hours"
+      [nzxStartDefaultOpenValue]="to.nzxStartDefaultOpenValue"
+      [nzxStartUse12Hours]="to.nzxStartUse12Hours"
       [nzxStartSuffixIcon]="nzxStartSuffixIcon"
-      [nzxStartHideDisabledOptions]="props.nzxStartHideDisabledOptions"
-      [nzxStartAllowEmpty]="props.nzxStartAllowEmpty"
-      [nzxStartAutoFocus]="props.nzxStartAutoFocus"
-      [nzxStartBackdrop]="props.nzxStartBackdrop"
-      [nzxEndStatus]="props.nzxEndStatus"
-      [nzxEndHourStep]="props.nzxEndHourStep"
-      [nzxEndMinuteStep]="props.nzxEndMinuteStep"
-      [nzxEndSecondStep]="props.nzxEndSecondStep"
-      [nzxEndClearText]="props.nzxEndClearText"
-      [nzxEndNowText]="props.nzxEndNowText"
-      [nzxEndOkText]="props.nzxEndOkText"
-      [nzxEndPopupClassName]="props.nzxEndPopupClassName"
+      [nzxStartHideDisabledOptions]="to.nzxStartHideDisabledOptions"
+      [nzxStartAllowEmpty]="to.nzxStartAllowEmpty"
+      [nzxStartAutoFocus]="to.nzxStartAutoFocus"
+      [nzxStartBackdrop]="to.nzxStartBackdrop"
+      [nzxEndHourStep]="to.nzxEndHourStep"
+      [nzxEndMinuteStep]="to.nzxEndMinuteStep"
+      [nzxEndSecondStep]="to.nzxEndSecondStep"
+      [nzxEndClearText]="to.nzxEndClearText"
+      [nzxEndNowText]="to.nzxEndNowText"
+      [nzxEndOkText]="to.nzxEndOkText"
+      [nzxEndPopupClassName]="to.nzxEndPopupClassName"
       [nzxEndAddOn]="nzxEndAddOn"
-      [nzxEndDefaultOpenValue]="props.nzxEndDefaultOpenValue"
-      [nzxEndUse12Hours]="props.nzxEndUse12Hours"
+      [nzxEndDefaultOpenValue]="to.nzxEndDefaultOpenValue"
+      [nzxEndUse12Hours]="to.nzxEndUse12Hours"
       [nzxEndSuffixIcon]="nzxEndSuffixIcon"
-      [nzxEndHideDisabledOptions]="props.nzxEndHideDisabledOptions"
-      [nzxEndAllowEmpty]="props.nzxEndAllowEmpty"
-      [nzxStartReName]="props.nzxStartReName"
-      [nzxStartDisabled]="props.nzxStartDisabled"
-      (nzxEndOpenChange)="props.nzxEndOpenChange?.($event, field, instance)"
-      (nzxStartOpenChange)="props.nzxStartOpenChange?.($event, field, instance)"
+      [nzxEndHideDisabledOptions]="to.nzxEndHideDisabledOptions"
+      [nzxEndAllowEmpty]="to.nzxEndAllowEmpty"
+      [nzxStartReName]="to.nzxStartReName"
+      [nzxStartDisabled]="to.nzxStartDisabled"
+      (nzxEndOpenChange)="to.nzxEndOpenChange && to.nzxEndOpenChange($event, field, instance)"
+      (nzxStartOpenChange)="to.nzxStartOpenChange && to.nzxStartOpenChange($event, field, instance)"
       ngDefaultControl
     ></nzx-between-time>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldBetweenTimeComponent extends FieldType<NzFormlyFieldConfig<BetweenTimeOptions>> {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzxSize: 'default',
       nzxStartPlaceholder: '起始值',
       nzxEndPlaceholder: '结束值',
@@ -84,18 +82,18 @@ export class FormlyFieldBetweenTimeComponent extends FieldType<NzFormlyFieldConf
   }
 
   get nzxStartAddOn() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzxStartAddOn');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzxStartAddOn');
   }
 
   get nzxEndAddOn() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzxEndAddOn');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzxEndAddOn');
   }
 
   get nzxStartSuffixIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzxStartSuffixIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzxStartSuffixIcon');
   }
 
   get nzxEndSuffixIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzxEndSuffixIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzxEndSuffixIcon');
   }
 }

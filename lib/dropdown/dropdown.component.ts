@@ -14,9 +14,9 @@ import { FormlyBoxTemplates } from '@xmagic/nz-formly/common';
             nz-menu-item
             [formlyAttributes]="item"
             [field]="item"
-            [nzSelected]="item.props?.nzSelected"
-            [nzDisabled]="item.props?.nzDisabled"
-            [nzPaddingLeft]="item.props?.nzPaddingLeft"
+            [nzSelected]="item.templateOptions?.nzSelected"
+            [nzDisabled]="item.templateOptions?.nzDisabled"
+            [nzPaddingLeft]="item.templateOptions?.nzPaddingLeft"
           ></formly-field>
         </ng-container>
       </div>
@@ -25,8 +25,8 @@ import { FormlyBoxTemplates } from '@xmagic/nz-formly/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldDropdownComponent extends FieldType implements OnInit {
-  override defaultOptions = {
-    props: { _subject: new ReplaySubject<NzDropdownMenuComponent>() }
+  defaultOptions = {
+    templateOptions: { _subject: new ReplaySubject<NzDropdownMenuComponent>() }
   };
 
   @ViewChild('menu', { read: NzDropdownMenuComponent, static: true }) instance!: NzDropdownMenuComponent;
@@ -35,10 +35,10 @@ export class FormlyFieldDropdownComponent extends FieldType implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.props._subject) {
-      this.props._subject.next(this.instance);
+    if (this.to._subject) {
+      this.to._subject.next(this.instance);
     }
-    this.props.instance = this.instance;
-    this.props.init?.(this.instance, this);
+    this.to.instance = this.instance;
+    this.to.init?.(this.instance, this);
   }
 }

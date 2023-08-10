@@ -8,32 +8,32 @@ import { FormlyBoxTemplates, hasTplNameValue, resolveTplName  } from '@xmagic/nz
     <button
       nz-button
       [formlyAttributes]="field"
-      [type]="props.type"
-      [nzBlock]="props.nzBlock"
-      [nzDanger]="props.nzDanger"
-      [nzGhost]="props.nzGhost"
-      [nzSize]="props.nzSize"
-      [nzLoading]="props.nzLoading"
-      [nzSearch]="props.nzSearch"
-      [nzShape]="props.nzShape"
-      [nzType]="props.nzType"
-      [nzWaveExtraNode]="props.nzWaveExtraNode"
+      [type]="to.type"
+      [nzBlock]="to.nzBlock"
+      [nzDanger]="to.nzDanger"
+      [nzGhost]="to.nzGhost"
+      [nzSize]="to.nzSize"
+      [nzLoading]="to.nzLoading"
+      [nzSearch]="to.nzSearch"
+      [nzShape]="to.nzShape"
+      [nzType]="to.nzType"
+      [nzWaveExtraNode]="to.nzWaveExtraNode"
       nz-dropdown
     >
-      <i *ngIf="props.beforeIcon" nz-icon [nzType]="props.beforeIcon"></i>
+      <i *ngIf="to.beforeIcon" nz-icon [nzType]="to.beforeIcon"></i>
       <ng-container *ngIf="hasText">
-        <ng-container *nzStringTemplateOutlet="text; context: { $implicit: field, options: props }">
+        <ng-container *nzStringTemplateOutlet="text; context: { $implicit: field, options: to }">
           {{ text }}
         </ng-container>
       </ng-container>
-      <i *ngIf="props.afterIcon" nz-icon [nzType]="props.afterIcon"></i>
+      <i *ngIf="to.afterIcon" nz-icon [nzType]="to.afterIcon"></i>
     </button>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldButtonComponent extends FieldType {
-  override defaultOptions = {
-    props: { nzSize: 'default', type: 'button' }
+  defaultOptions = {
+    templateOptions: { nzSize: 'default', type: 'button' }
   };
 
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {
@@ -41,10 +41,10 @@ export class FormlyFieldButtonComponent extends FieldType {
   }
 
   get hasText() {
-    return hasTplNameValue(this.props, 'text');
+    return hasTplNameValue(this.to, 'text');
   }
 
   get text() {
-    return resolveTplName(this.props, this.fieldTemplates, 'text');
+    return resolveTplName(this.to, this.fieldTemplates, 'text');
   }
 }

@@ -10,37 +10,37 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
       style="width: 100%"
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [nzMode]="props.nzMode"
-      [nzAllowClear]="props.nzAllowClear"
-      [nzAutoFocus]="props.nzAutoFocus"
-      [nzBackdrop]="props.nzBackdrop"
-      [nzDisabled]="props.nzDisabled || props.disabled || formControl?.disabled"
-      [nzDisabledDate]="props.nzDisabledDate"
-      [nzPopupStyle]="props.nzPopupStyle"
-      [nzDropdownClassName]="props.nzDropdownClassName"
-      [nzSize]="props.nzSize"
-      [nzFormat]="props.nzFormat"
-      [nzInputReadOnly]="props.nzInputReadOnly"
-      [nzPlaceHolder]="props.nzPlaceHolder || props.placeholder"
-      [nzBorderless]="props.nzBorderless"
-      [nzSuffixIcon]="props.nzSuffixIcon"
+      [nzMode]="to.nzMode"
+      [nzAllowClear]="to.nzAllowClear"
+      [nzAutoFocus]="to.nzAutoFocus"
+      [nzBackdrop]="to.nzBackdrop"
+      [nzDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+      [nzDisabledDate]="to.nzDisabledDate"
+      [nzPopupStyle]="to.nzPopupStyle"
+      [nzDropdownClassName]="to.nzDropdownClassName"
+      [nzSize]="to.nzSize"
+      [nzFormat]="to.nzFormat"
+      [nzInputReadOnly]="to.nzInputReadOnly"
+      [nzPlaceHolder]="to.nzPlaceHolder || to.placeholder"
+      [nzBorderless]="to.nzBorderless"
+      [nzSuffixIcon]="to.nzSuffixIcon"
       [nzRenderExtraFooter]="nzRenderExtraFooter"
-      [nzInline]="props.nzInline"
-      (nzOnOpenChange)="props.nzOnOpenChange?.($event, field, instance)"
+      [nzInline]="to.nzInline"
+      (nzOnOpenChange)="to.nzOnOpenChange && to.nzOnOpenChange($event, field, instance)"
       [nzDateRender]="nzDateRender"
-      [nzDisabledTime]="props.nzDisabledTime"
-      [nzShowTime]="props.nzShowTime"
-      [nzShowToday]="props.nzShowToday"
-      [nzShowNow]="props.nzShowNow"
-      (nzOnOk)=" props.nzOnOk?.($event, field, instance)"
+      [nzDisabledTime]="to.nzDisabledTime"
+      [nzShowTime]="to.nzShowTime"
+      [nzShowToday]="to.nzShowToday"
+      [nzShowNow]="to.nzShowNow"
+      (nzOnOk)=" to.nzOnOk &&  to.nzOnOk($event, field, instance)"
       ngDefaultControl
     ></nz-date-picker>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldDatePickerComponent extends FieldType {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzAllowClear: true,
       nzDisabled: false,
       nzPopupStyle: {},
@@ -56,10 +56,10 @@ export class FormlyFieldDatePickerComponent extends FieldType {
   }
 
   get nzRenderExtraFooter() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzRenderExtraFooter');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzRenderExtraFooter');
   }
 
   get nzDateRender() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzDateRender');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzDateRender');
   }
 }

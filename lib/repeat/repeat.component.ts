@@ -5,7 +5,7 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
 @Component({
   selector: 'nz-formly-repeat',
   template: `
-    <div class="repeat-view" [formlyAttributes]="field" [style.max-height]="props.maxHeight">
+    <div class="repeat-view" [formlyAttributes]="field" [style.max-height]="to.maxHeight">
       <div *ngFor="let f of field.fieldGroup; let i = index" class="repeat-row">
         <formly-field class="repeat-col" [field]="f"></formly-field>
 
@@ -15,11 +15,11 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
       </div>
     </div>
 
-    <div *ngIf="props.showAdd">
+    <div *ngIf="to.showAdd">
       <ng-container *nzStringTemplateOutlet="addButton; context: { $implicit: this, field: field }">
         <button nz-button nzType="primary" type="button" (click)="add()">
           <i nz-icon nzType="plus"></i>
-          {{ props.addButton }}
+          {{ to.addButton }}
         </button>
       </ng-container>
     </div>
@@ -62,8 +62,8 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldRepeatComponent extends FieldArrayType {
-  override defaultOptions = {
-    props: { showAdd: true, addButton: '添加', maxHeight: '300px' }
+  defaultOptions = {
+    templateOptions: { showAdd: true, addButton: '添加', maxHeight: '300px' }
   };
 
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {
@@ -71,10 +71,10 @@ export class FormlyFieldRepeatComponent extends FieldArrayType {
   }
 
   get addButton() {
-    return resolveTplName(this.props, this.fieldTemplates, 'addButton');
+    return resolveTplName(this.to, this.fieldTemplates, 'addButton');
   }
 
   get removeButton() {
-    return resolveTplName(this.props, this.fieldTemplates, 'removeButton');
+    return resolveTplName(this.to, this.fieldTemplates, 'removeButton');
   }
 }

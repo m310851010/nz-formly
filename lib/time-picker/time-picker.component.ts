@@ -11,39 +11,38 @@ import { TimePickerOptions } from './formly.type'
       style="width: 100%"
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [nzId]="field.id || props.nzId"
+      [nzId]="field.id || to.nzId"
       [nzAddOn]="nzAddOn"
-      [nzSize]="props.nzSize"
-      [nzBackdrop]="props.nzBackdrop"
-      [nzAllowEmpty]="props.nzAllowEmpty"
-      [nzAutoFocus]="props.nzAutoFocus"
-      [nzClearText]="props.nzClearText"
-      [nzNowText]="props.nzNowText"
-      [nzOkText]="props.nzOkText"
-      [nzDefaultOpenValue]="props.nzDefaultOpenValue"
-      [nzDisabled]="props.nzDisabled || props.disabled || formControl?.disabled"
-      [nzDisabledHours]="props.nzDisabledHours"
-      [nzDisabledMinutes]="props.nzDisabledMinutes"
-      [nzDisabledSeconds]="props.nzDisabledSeconds"
-      [nzFormat]="props.nzFormat"
-      [nzHideDisabledOptions]="props.nzHideDisabledOptions"
-      [nzHourStep]="props.nzHourStep"
-      [nzMinuteStep]="props.nzMinuteStep"
-      [nzSecondStep]="props.nzSecondStep"
-      [nzPlaceHolder]="props.nzPlaceHolder || props.placeholder"
-      [nzPopupClassName]="props.nzPopupClassName"
-      [nzUse12Hours]="props.nzUse12Hours"
-      [nzStatus]="props.nzStatus"
-      [nzSuffixIcon]="nzSuffixIcon"
-      (nzOpenChange)=" props.nzOpenChange?.($event, field, instance)"
+      [nzSize]="to.nzSize"
+      [nzBackdrop]="to.nzBackdrop"
+      [nzAllowEmpty]="to.nzAllowEmpty"
+      [nzAutoFocus]="to.nzAutoFocus"
+      [nzClearText]="to.nzClearText"
+      [nzNowText]="to.nzNowText"
+      [nzOkText]="to.nzOkText"
+      [nzDefaultOpenValue]="to.nzDefaultOpenValue"
+      [nzDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+      [nzDisabledHours]="to.nzDisabledHours"
+      [nzDisabledMinutes]="to.nzDisabledMinutes"
+      [nzDisabledSeconds]="to.nzDisabledSeconds"
+      [nzFormat]="to.nzFormat"
+      [nzHideDisabledOptions]="to.nzHideDisabledOptions"
+      [nzHourStep]="to.nzHourStep"
+      [nzMinuteStep]="to.nzMinuteStep"
+      [nzSecondStep]="to.nzSecondStep"
+      [nzPlaceHolder]="to.nzPlaceHolder || to.placeholder"
+      [nzPopupClassName]="to.nzPopupClassName"
+      [nzUse12Hours]="to.nzUse12Hours"
+      [nzSuffixIcon]="nzSuffixIcon!"
+      (nzOpenChange)=" to.nzOpenChange &&  to.nzOpenChange($event, field, instance)"
       ngDefaultControl
     ></nz-time-picker>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldTimePickerComponent extends FieldType<NzFormlyFieldConfig<TimePickerOptions>> {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzAllowEmpty: true,
       nzFormat: 'HH:mm:ss',
       nzHourStep: 1,
@@ -60,10 +59,10 @@ export class FormlyFieldTimePickerComponent extends FieldType<NzFormlyFieldConfi
   }
 
   get nzSuffixIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzSuffixIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzSuffixIcon');
   }
 
   get nzAddOn() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzAddOn');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzAddOn');
   }
 }

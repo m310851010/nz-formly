@@ -94,7 +94,7 @@ export class FormlyBoxTemplates implements AfterContentInit, OnChanges {
       return;
     }
 
-    templateList.forEach(v => {
+    templateList.forEach((v: NzSafeAny) => {
       if (v instanceof NamedTemplate) {
         tplMap.set(v.named, v.template);
       } else {

@@ -19,7 +19,7 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
  * ```js
  * {
  *   type: 'ref-template',
- *   props: {
+ *   templateOptions: {
  *     refName: 'test'
  *   }
  * }
@@ -36,7 +36,7 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
  * ```js
  * {
  *   type: 'ref-template',
- *   props: {
+ *   templateOptions: {
  *     ref: this.test2
  *   }
  * }
@@ -48,7 +48,7 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
  * ```js
  * {
  *   type: 'ref-template',
- *   props: {
+ *   templateOptions: {
  *     ref: '<div>test text</div>'
  *   }
  * }
@@ -57,7 +57,7 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
 @Component({
   selector: 'nz-formly-ref-template',
   template: `
-    <ng-container *nzStringTemplateOutlet="ref; context: { $implicit: field, props: props }">
+    <ng-container *nzStringTemplateOutlet="ref; context: { $implicit: field, templateOptions: to }">
       <div [innerHTML]="$any(ref) | trustHtml"></div>
     </ng-container>
   `,
@@ -69,6 +69,6 @@ export class FormlyFieldRefTemplateComponent extends FieldType {
   }
 
   get ref() {
-    return resolveTplName(this.props, this.fieldTemplates, 'ref');
+    return resolveTplName(this.to, this.fieldTemplates, 'ref');
   }
 }

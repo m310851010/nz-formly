@@ -1,10 +1,11 @@
 import { TemplateRef } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzDropDownDirective } from 'ng-zorro-antd/dropdown';
-import { FormlyFieldConfig, FormlyFieldProps } from '@ngx-formly/core';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Observable } from 'rxjs';
 import { AsyncOption } from '@xmagic/nzx-antd/pipe';
 import { FormlyBoxTemplates } from './formly-box-templates.directive';
+import { NzxUtils } from '@xmagic/nzx-antd/util';
 
 /**
  * 下拉菜单配置
@@ -135,7 +136,19 @@ export function getRootFiled(field: FormlyFieldConfig) {
  */
 export function findField(field: FormlyFieldConfig, key: string): FormlyFieldConfig | undefined {
   const rootField = getRootFiled(field);
-  return rootField.get!(key);
+  let foundField: FormlyFieldConfig | undefined;
+  NzxUtils.forEachTree(
+    rootField.fieldGroup || [],
+    node => {
+      if (node.key === key) {
+        foundField = node;
+        return false;
+      }
+      return true;
+    },
+    'fieldGroup'
+  );
+  return foundField;
 }
 
 /**
@@ -153,7 +166,7 @@ export interface AsyncFormlyOptions<T extends NzSafeAny = NzSafeAny, U extends N
  * 控件模板参数配置项
  */
 export type ControlOptions = DropdownWrapperOptions &
-  Omit<FormlyFieldProps, 'options'> & {
+  Omit<FormlyFormOptions, 'options'> & {
     valueChanges?: (value: NzSafeAny, field: NzFormlyFieldConfig) => void;
     attributes?: {
       style: string;
@@ -167,10 +180,6 @@ export type ControlOptions = DropdownWrapperOptions &
 export interface NzFormlyFieldConfig<T extends ControlOptions = ControlOptions> extends FormlyFieldConfig {
   /**
    * 这是为模板扩展的属性，所有模板访问的属性都应该从这里访问
-   */
-  props?: T;
-  /**
-   * @deprecated 使用 `props` 代替
    */
   templateOptions?: T;
 }

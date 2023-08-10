@@ -58,9 +58,9 @@ export interface CardWrapperOptions extends ControlOptions {
 }
 
 /**
- *  上传文件配置
+ *  Card配置
  */
 export interface CardFieldWrapperConfig extends NzFormlyFieldConfig<CardWrapperOptions> {
   // type: 'formly-group',
-  wrappers: Array<'modal-wrapper' | string | Type<FieldWrapper>>;
+  wrappers: Array<'modal-wrapper' | string>;
 }

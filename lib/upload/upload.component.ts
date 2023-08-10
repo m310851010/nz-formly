@@ -10,51 +10,51 @@ import { UploadOptions } from './formly.type';
       #instance
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [nzType]="props.nzType"
-      [nzAccept]="props.nzAccept"
-      [nzAction]="props.nzAction"
-      [nzDirectory]="props.nzDirectory"
-      [nzOpenFileDialogOnClick]="props.nzOpenFileDialogOnClick"
-      [nzBeforeUpload]="props.nzBeforeUpload"
-      [nzCustomRequest]="props.nzCustomRequest"
-      [nzData]="props.nzData"
-      [nzFilter]="props.nzFilter"
-      [nzDisabled]="props.nzDisabled || props.disabled || formControl?.disabled"
-      [nzHeaders]="props.nzHeaders"
-      [nzListType]="props.nzListType"
-      [nzMultiple]="props.nzMultiple"
-      [nzName]="props.nzName"
-      [nzShowUploadList]="props.nzShowUploadList"
-      [nzShowButton]="props.nzShowButton"
-      [nzWithCredentials]="props.nzWithCredentials"
-      [nzRemove]="props.nzRemove"
-      [nzPreview]="props.nzPreview"
-      [nzPreviewFile]="props.nzPreviewFile"
-      [nzPreviewIsImage]="props.nzPreviewIsImage"
-      [nzTransformFile]="props.nzTransformFile"
-      [nzDownload]="props.nzDownload"
+      [nzType]="to.nzType"
+      [nzAccept]="to.nzAccept"
+      [nzAction]="to.nzAction"
+      [nzDirectory]="to.nzDirectory"
+      [nzOpenFileDialogOnClick]="to.nzOpenFileDialogOnClick"
+      [nzBeforeUpload]="to.nzBeforeUpload"
+      [nzCustomRequest]="to.nzCustomRequest"
+      [nzData]="to.nzData"
+      [nzFilter]="to.nzFilter"
+      [nzDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+      [nzHeaders]="to.nzHeaders"
+      [nzListType]="to.nzListType"
+      [nzMultiple]="to.nzMultiple"
+      [nzName]="to.nzName"
+      [nzShowUploadList]="to.nzShowUploadList"
+      [nzShowButton]="to.nzShowButton"
+      [nzWithCredentials]="to.nzWithCredentials"
+      [nzRemove]="to.nzRemove"
+      [nzPreview]="to.nzPreview"
+      [nzPreviewFile]="to.nzPreviewFile"
+      [nzPreviewIsImage]="to.nzPreviewIsImage"
+      [nzTransformFile]="to.nzTransformFile"
+      [nzDownload]="to.nzDownload"
       [nzIconRender]="nzIconRender"
       [nzFileListRender]="nzFileListRender"
-      [nzSize]="props.nzSize"
-      [nzLimit]="props.nzLimit"
-      [nzxShowUploadButtonIcon]="props.nzxShowUploadButtonIcon"
-      [nzxHint]="props.nzxHint"
+      [nzSize]="to.nzSize"
+      [nzLimit]="to.nzLimit"
+      [nzxShowUploadButtonIcon]="to.nzxShowUploadButtonIcon"
+      [nzxHint]="to.nzxHint"
       [nzxUploadButton]="uploadButton"
-      [nzxUploadButtonIcon]="props.nzxUploadButtonIcon"
-      [nzxFileNameDuplicate]="props.nzxFileNameDuplicate"
-      [nzxValidateMessage]="props.nzxValidateMessage"
-      [nzxFileNameLength]="props.nzxFileNameLength"
-      [nzxShowValidateMessage]="props.nzxShowValidateMessage"
-      [nzTotalSize]="props.nzTotalSize"
-      [nzFileType]="props.nzFileType"
-      (nzChange)="props.nzChange?.($event, field, instance)"
-      (nzFileListChange)="props.nzFileListChange?.($event, field, instance)"
+      [nzxUploadButtonIcon]="to.nzxUploadButtonIcon"
+      [nzxFileNameDuplicate]="to.nzxFileNameDuplicate"
+      [nzxValidateMessage]="to.nzxValidateMessage"
+      [nzxFileNameLength]="to.nzxFileNameLength"
+      [nzxShowValidateMessage]="to.nzxShowValidateMessage"
+      [nzTotalSize]="to.nzTotalSize"
+      [nzFileType]="to.nzFileType"
+      (nzChange)="to.nzChange && to.nzChange($event, field, instance)"
+      (nzFileListChange)="to.nzFileListChange && to.nzFileListChange($event, field, instance)"
     ></nzx-upload>
   `
 })
 export class FormlyFieldUploadComponent extends FieldType<NzFormlyFieldConfig<UploadOptions>> {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzType: 'select',
       nzOpenFileDialogOnClick: true,
       nzFilter: [],
@@ -71,13 +71,13 @@ export class FormlyFieldUploadComponent extends FieldType<NzFormlyFieldConfig<Up
   }
 
   get uploadButton() {
-    return resolveTplName(this.props, this.fieldTemplates, 'uploadButton');
+    return resolveTplName(this.to, this.fieldTemplates, 'uploadButton');
   }
 
   get nzIconRender() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzIconRender');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzIconRender');
   }
   get nzFileListRender() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzFileListRender');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzFileListRender');
   }
 }

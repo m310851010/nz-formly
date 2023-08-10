@@ -9,21 +9,21 @@ import { NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
     <nzx-switch
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [nzxCheckedValue]="props.nzxCheckedValue"
-      [nzxUnCheckedValue]="props.nzxUnCheckedValue"
-      [nzCheckedChildren]="props.nzCheckedChildren"
-      [nzUnCheckedChildren]="props.nzUnCheckedChildren"
-      [nzDisabled]="props.nzDisabled || props.disabled || formControl?.disabled"
-      [nzSize]="props.nzSize"
-      [nzLoading]="props.nzLoading"
-      [nzControl]="props.nzControl"
+      [nzxCheckedValue]="to.nzxCheckedValue"
+      [nzxUnCheckedValue]="to.nzxUnCheckedValue"
+      [nzCheckedChildren]="to.nzCheckedChildren"
+      [nzUnCheckedChildren]="to.nzUnCheckedChildren"
+      [nzDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+      [nzSize]="to.nzSize"
+      [nzLoading]="to.nzLoading"
+      [nzControl]="to.nzControl"
       ngDefaultControl
     ></nzx-switch>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldSwitchComponent extends FieldType<NzFormlyFieldConfig<SwitchOptions>> {
-  override defaultOptions = {
-    props: { nzxCheckedValue: true, nzxUnCheckedValue: false }
+  defaultOptions = {
+    templateOptions: { nzxCheckedValue: true, nzxUnCheckedValue: false }
   };
 }

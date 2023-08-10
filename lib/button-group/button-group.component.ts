@@ -2,13 +2,13 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, QueryList
 import { FieldType } from '@ngx-formly/core';
 import { NzDropDownDirective } from 'ng-zorro-antd/dropdown';
 import { Subject } from 'rxjs';
-import { getRootFiled } from '@xmagic/nz-formly/common';
+import { findField, getRootFiled } from '@xmagic/nz-formly/common';
 
 @Component({
   selector: 'nz-formly-button-group',
   template: `
-    <nz-button-group [nzSize]="props.nzSize" [formlyAttributes]="field">
-      <ng-container *ngFor="let item of props.buttons">
+    <nz-button-group [nzSize]="to.nzSize" [formlyAttributes]="field">
+      <ng-container *ngFor="let item of to.buttons">
         <ng-container *ngIf="item.dropdown?.ref; else innerTemplateRef">
           <ng-container *ngTemplateOutlet="btnDropdownTemplate; context: { $implicit: item }"></ng-container>
         </ng-container>
@@ -23,7 +23,7 @@ import { getRootFiled } from '@xmagic/nz-formly/common';
       <button
         nz-button
         [type]="item.type || 'button'"
-        [formlyAttributes]="{ props: item }"
+        [formlyAttributes]="{ templateOptions: item }"
         [nzBlock]="item.nzBlock"
         [nzDanger]="item.nzDanger"
         [nzGhost]="item.nzGhost"
@@ -55,9 +55,9 @@ import { getRootFiled } from '@xmagic/nz-formly/common';
         [nzMatchWidthElement]="item.dropdown.nzMatchWidthElement"
         [nzOverlayClassName]="item.dropdown.nzOverlayClassName"
         [nzOverlayStyle]="item.dropdown.nzOverlayStyle"
-        (nzVisibleChange)="item.dropdown.nzVisibleChange?.($event, field, this)"
+        (nzVisibleChange)="item.dropdown.nzVisibleChange && item.dropdown.nzVisibleChange($event, field, this)"
         [type]="item.type || 'button'"
-        [formlyAttributes]="{ props: item }"
+        [formlyAttributes]="{ templateOptions: item }"
         [nzBlock]="item.nzBlock"
         [nzDanger]="item.nzDanger"
         [nzGhost]="item.nzGhost"
@@ -80,8 +80,8 @@ import { getRootFiled } from '@xmagic/nz-formly/common';
 export class FormlyFieldButtonGroupComponent extends FieldType implements OnDestroy, AfterViewInit {
   @ViewChildren('dropdownDirective', { read: NzDropDownDirective }) dropdownDirectives!: QueryList<NzDropDownDirective>;
   destroy$ = new Subject<void>();
-  override defaultOptions = {
-    props: { nzSize: 'default', buttons: [] }
+  defaultOptions = {
+    templateOptions: { nzSize: 'default', buttons: [] }
   };
 
   constructor() {
@@ -94,7 +94,7 @@ export class FormlyFieldButtonGroupComponent extends FieldType implements OnDest
   }
 
   dropdownChange() {
-    const dropdownBtn = this.props.buttons.filter((btn: any) => btn.dropdown?.ref);
+    const dropdownBtn = this.to.buttons.filter((btn: any) => btn.dropdown?.ref);
     if (!dropdownBtn.length) {
       return;
     }
@@ -106,10 +106,10 @@ export class FormlyFieldButtonGroupComponent extends FieldType implements OnDest
       if (btn.dropdown?.nzDropdownMenu) {
         return;
       }
-      const dropdownField = rootField.get!(btn.dropdown.ref);
+      const dropdownField = findField(rootField, btn.dropdown.ref);
       const dropdownDir = this.dropdownDirectives.get(i);
       if (dropdownField && dropdownDir) {
-        const instance = dropdownField.props!.instance;
+        const instance = dropdownField.templateOptions!.instance;
         btn.dropdown.nzDropdownMenu = instance;
         dropdownDir.nzDropdownMenu = instance;
         dropdownDir.ngAfterViewInit();

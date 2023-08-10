@@ -11,11 +11,6 @@ export interface AlertOptions extends ControlOptions {
    */
   nzBanner?: boolean;
   /**
-   * 自定义操作项
-   */
-  nzAction?: string | TemplateRef<void>;
-  nzActionName?: string;
-  /**
    * 默认不显示关闭按钮
    */
   nzCloseable?: boolean;

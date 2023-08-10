@@ -7,8 +7,8 @@ import { TextFieldConfig } from './formly.type';
 @Component({
   selector: 'nz-formly-text-value',
   template: `
-    <nz-form-text class="wrap-text" [formlyAttributes]="field" [ngClass]="props.ngClass" [ngStyle]="props.ngStyle">
-      {{ textValue | async | defaultify: props.defaultText }}
+    <nz-form-text class="wrap-text" [formlyAttributes]="field" [ngClass]="to.ngClass" [ngStyle]="to.ngStyle">
+      {{ textValue | async | defaultify: to.defaultText }}
     </nz-form-text>
   `,
   styles: [
@@ -24,8 +24,8 @@ export class FormlyFieldTextValueComponent<T> extends FieldType<TextFieldConfig>
   private result?: Observable<T> | Promise<T>;
   private subscription?: Subscription;
 
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       defaultText: '--'
     }
   };
@@ -38,7 +38,7 @@ export class FormlyFieldTextValueComponent<T> extends FieldType<TextFieldConfig>
 
   get textValue() {
     const value = this.formControl!.value;
-    const format = this.props.format || this.formState.format;
+    const format = this.to.format || this.formState.format;
 
     if (typeof format !== 'function') {
       return of(value);

@@ -31,7 +31,7 @@ const COMPONENT = FormlyFieldInputComponent;
           name: 'number',
           extends: 'input',
           defaultOptions: {
-            props: {
+            templateOptions: {
               type: 'number'
             }
           }
@@ -40,7 +40,7 @@ const COMPONENT = FormlyFieldInputComponent;
           name: 'autocomplete',
           extends: 'input',
           defaultOptions: {
-            props: {
+            templateOptions: {
               nzAutocomplete: true
             }
           }

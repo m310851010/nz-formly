@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, Optional, ViewChild } from '@angular/core';
-import { FieldWrapper } from '@ngx-formly/core';
+import { FieldWrapper, FormlyFieldConfig } from '@ngx-formly/core';
 import { NzModalComponent } from 'ng-zorro-antd/modal';
-import { FormlyFieldConfig } from '@ngx-formly/core/lib/models';
 import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
@@ -9,45 +8,45 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   selector: 'nz-formly-modal-wrapper',
   template: `
     <nz-modal
-      *ngIf="props.nzVisible"
+      *ngIf="to.nzVisible"
       #nzModal
       nzxModalDrag
       [nzVisible]="true"
-      [nzTitle]="props.label || nzTitle"
+      [nzTitle]="to.label || nzTitle"
       [formlyAttributes]="field"
-      [nzAutofocus]="props.nzAutofocus"
-      [nzBodyStyle]="props.nzBodyStyle"
-      [nzCancelDisabled]="props.nzCancelDisabled"
-      [nzCancelLoading]="props.nzCancelLoading"
-      [nzCancelText]="props.nzCancelText"
-      [nzCentered]="props.nzCentered"
-      [nzClassName]="props.nzClassName"
-      [nzClosable]="props.nzClosable"
+      [nzAutofocus]="to.nzAutofocus"
+      [nzBodyStyle]="to.nzBodyStyle"
+      [nzCancelDisabled]="to.nzCancelDisabled"
+      [nzCancelLoading]="to.nzCancelLoading"
+      [nzCancelText]="to.nzCancelText"
+      [nzCentered]="to.nzCentered"
+      [nzClassName]="to.nzClassName"
+      [nzClosable]="to.nzClosable"
       [nzCloseIcon]="nzCloseIcon"
-      [nzCloseOnNavigation]="props.nzCloseOnNavigation"
-      [nzComponentParams]="props.nzComponentParams"
+      [nzCloseOnNavigation]="to.nzCloseOnNavigation"
+      [nzComponentParams]="to.nzComponentParams"
       [nzFooter]="nzFooter"
-      [nzIconType]="props.nzIconType"
-      [nzKeyboard]="props.nzKeyboard"
-      [nzMask]="props.nzMask"
-      [nzMaskClosable]="props.nzMaskClosable"
-      [nzMaskStyle]="props.nzMaskStyle"
-      [nzModalType]="props.nzModalType"
-      [nzNoAnimation]="props.nzNoAnimation"
-      [nzOkDanger]="props.nzOkDanger"
-      [nzOkDisabled]="props.nzOkDisabled"
-      [nzOkLoading]="props.nzOkLoading"
-      [nzOkText]="props.nzOkText"
-      [nzOkType]="props.nzOkType"
-      [nzStyle]="props.nzStyle"
-      [nzWidth]="props.nzWidth"
-      [nzWrapClassName]="props.nzWrapClassName"
-      [nzZIndex]="props.nzZIndex"
-      (nzAfterClose)="props.onAfterClose && props.onAfterClose($event, field, instance)"
-      (nzAfterOpen)="props.nzAfterOpen && props.nzAfterOpen(field, instance)"
-      (nzOnCancel)="props.nzOnCancel?.($event, field, instance)"
-      (nzOnOk)="props.nzOnOk?.($event, field, instance)"
-      (nzVisibleChange)="props.nzVisibleChange?.($event, field, instance)"
+      [nzIconType]="to.nzIconType"
+      [nzKeyboard]="to.nzKeyboard"
+      [nzMask]="to.nzMask"
+      [nzMaskClosable]="to.nzMaskClosable"
+      [nzMaskStyle]="to.nzMaskStyle"
+      [nzModalType]="to.nzModalType"
+      [nzNoAnimation]="to.nzNoAnimation"
+      [nzOkDanger]="to.nzOkDanger"
+      [nzOkDisabled]="to.nzOkDisabled"
+      [nzOkLoading]="to.nzOkLoading"
+      [nzOkText]="to.nzOkText"
+      [nzOkType]="to.nzOkType"
+      [nzStyle]="to.nzStyle"
+      [nzWidth]="to.nzWidth"
+      [nzWrapClassName]="to.nzWrapClassName"
+      [nzZIndex]="to.nzZIndex"
+      (nzAfterClose)="to.onAfterClose && to.onAfterClose($event, field, instance)"
+      (nzAfterOpen)="to.nzAfterOpen && to.nzAfterOpen(field, instance)"
+      (nzOnCancel)="to.nzOnCancel && to.nzOnCancel($event, field, instance)"
+      (nzOnOk)="to.nzOnOk && to.nzOnOk($event, field, instance)"
+      (nzVisibleChange)="to.nzVisibleChange && to.nzVisibleChange($event, field, instance)"
     >
       <ng-container *nzModalContent>
         <ng-container #fieldComponent></ng-container>
@@ -58,8 +57,8 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
 })
 export class ModalWrapperComponent extends FieldWrapper implements OnInit {
   @ViewChild('nzModal', { static: true }) instance!: NzModalComponent;
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzOkType: 'primary',
       nzCloseOnNavigation: true,
       nzMaskClosable: false,
@@ -72,8 +71,8 @@ export class ModalWrapperComponent extends FieldWrapper implements OnInit {
       nzVisible: false,
       nzCloseIcon: 'close',
       nzOnCancel: (v: NzSafeAny, field: FormlyFieldConfig, instance: NzModalComponent) =>
-        (field.props!.nzVisible = false),
-      nzOnOk: (v: NzSafeAny, field: FormlyFieldConfig, instance: NzModalComponent) => (field.props!.nzVisible = false)
+        (field.templateOptions!.nzVisible = false),
+      nzOnOk: (v: NzSafeAny, field: FormlyFieldConfig, instance: NzModalComponent) => (field.templateOptions!.nzVisible = false)
     }
   };
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {
@@ -81,19 +80,19 @@ export class ModalWrapperComponent extends FieldWrapper implements OnInit {
   }
 
   ngOnInit(): void {
-    this.props.instance = this.instance;
-    this.props.init?.(this.instance, this);
+    this.to.instance = this.instance;
+    this.to.init?.(this.instance, this);
   }
 
   get nzTitle() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzTitle');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzTitle');
   }
 
   get nzFooter() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzFooter');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzFooter');
   }
 
   get nzCloseIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzCloseIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzCloseIcon');
   }
 }

@@ -6,23 +6,23 @@ import { FormlyBoxTemplates } from '@xmagic/nz-formly/common';
   selector: 'nz-formly-divider',
   template: `
     <nz-divider
-      [nzType]="props.nzType"
-      [nzDashed]="props.nzDashed"
-      [nzOrientation]="props.nzOrientation"
-      [nzPlain]="props.nzPlain"
+      [nzType]="to.nzType"
+      [nzDashed]="to.nzDashed"
+      [nzOrientation]="to.nzOrientation"
+      [nzPlain]="to.nzPlain"
       [nzText]="nzText"
       [formlyAttributes]="field"
     ></nz-divider>
     <ng-template #nzText>
-      {{ props.nzText }}
+      {{ to.nzText }}
       <formly-field *ngFor="let f of field.fieldGroup" [field]="f"></formly-field>
     </ng-template>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldDividerComponent extends FieldType {
-  override defaultOptions = {
-    props: { nzOrientation: 'center', nzType: 'horizontal' }
+  defaultOptions = {
+    templateOptions: { nzOrientation: 'center', nzType: 'horizontal' }
   };
 
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {

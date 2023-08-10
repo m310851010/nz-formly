@@ -8,22 +8,22 @@ import { FormlyBoxTemplates, hasTplNameValue, resolveTplName } from '@xmagic/nz-
     <nzx-checkbox
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [nzxDisabled]="props.disabled || formControl?.disabled"
-      [nzxOptions]="props.options | toAsync: $any(props) | async"
+      [nzxDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+      [nzxOptions]="to.options | toAsync: $any(to) | async"
       [nzxLabelTemplate]="labelTemplate"
-      [nzxLayout]="props.nzxLayout"
-      [nzxMultiple]="props.nzxMultiple"
-      (nzxBlur)="props.blur && props.blur(field, $event)"
-      (nzxFocus)="props.focus && props.focus(field, $event)"
-      (nzxItemChange)="props.nzxItemChange && props.nzxItemChange($event, field, this)"
+      [nzxLayout]="to.nzxLayout"
+      [nzxMultiple]="to.nzxMultiple"
+      (nzxBlur)="to.blur && to.blur(field, $event)"
+      (nzxFocus)="to.focus && to.focus(field, $event)"
+      (nzxItemChange)="to.nzxItemChange && to.nzxItemChange($event, field, this)"
       ngDefaultControl
     ></nzx-checkbox>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldCheckboxComponent extends FieldType {
-  override defaultOptions = {
-    props: { options: [], nzxMultiple: true, nzxLayout: 'horizontal' }
+  defaultOptions = {
+    templateOptions: { options: [], nzxMultiple: true, nzxLayout: 'horizontal' }
   };
 
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {
@@ -31,6 +31,6 @@ export class FormlyFieldCheckboxComponent extends FieldType {
   }
 
   get labelTemplate() {
-    return resolveTplName(this.props, this.fieldTemplates, 'labelTemplate');
+    return resolveTplName(this.to, this.fieldTemplates, 'labelTemplate');
   }
 }

@@ -12,29 +12,29 @@ import { NzSliderShowTooltip } from 'ng-zorro-antd/slider';
       #instance
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [nzRange]="props.nzRange"
-      [nzDefaultValue]="props.nzDefaultValue"
-      [nzDisabled]="props.nzDisabled || props.disabled || formControl?.disabled"
-      [nzDots]="props.nzDots"
-      [nzIncluded]="props.nzIncluded"
-      [nzMarks]="props.nzMarks"
-      [nzMax]="props.nzMax"
-      [nzMin]="props.nzMin"
-      [nzStep]="props.nzStep"
-      [nzTipFormatter]="props.nzTipFormatter"
-      [nzVertical]="props.nzVertical"
-      [nzReverse]="props.nzReverse"
-      [nzTooltipPlacement]="$any(props.nzTooltipPlacement)"
-      [nzTooltipVisible]="props.nzTooltipVisible"
-      (nzOnAfterChange)="props.nzOnAfterChange?.($event, field, instance)"
+      [nzRange]="to.nzRange"
+      [nzDefaultValue]="to.nzDefaultValue"
+      [nzDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+      [nzDots]="to.nzDots"
+      [nzIncluded]="to.nzIncluded"
+      [nzMarks]="to.nzMarks"
+      [nzMax]="to.nzMax"
+      [nzMin]="to.nzMin"
+      [nzStep]="to.nzStep"
+      [nzTipFormatter]="to.nzTipFormatter"
+      [nzVertical]="to.nzVertical"
+      [nzReverse]="to.nzReverse"
+      [nzTooltipPlacement]="$any(to.nzTooltipPlacement)"
+      [nzTooltipVisible]="to.nzTooltipVisible"
+      (nzOnAfterChange)="to.nzOnAfterChange && to.nzOnAfterChange($event, field, instance)"
       ngDefaultControl
     ></nz-slider>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldSliderComponent extends FieldType<NzFormlyFieldConfig<SliderOptions>> {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzMax: 100,
       nzMin: 0,
       nzStep: 1,

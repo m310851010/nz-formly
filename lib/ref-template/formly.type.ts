@@ -5,7 +5,7 @@ import { FieldWrapperOptions } from '@xmagic/nz-formly/field-wrapper';
  * RefTemplate配置
  */
 export interface RefTemplateOptions extends ControlOptions {
-  ref?: string | TemplateRef<{ $implicit: RefTemplateFieldConfig; props: RefTemplateOptions }>;
+  ref?: string | TemplateRef<{ $implicit: RefTemplateFieldConfig; templateOptions: RefTemplateOptions }>;
   refName?: string;
 }
 

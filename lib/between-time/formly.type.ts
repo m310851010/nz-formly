@@ -1,6 +1,5 @@
 import { ControlOptions, NzFormlyFieldConfig } from '@xmagic/nz-formly/common';
 import { BaseBetweenOptions } from '@xmagic/nz-formly/between-input';
-import { NzStatus } from 'ng-zorro-antd/core/types';
 import { TemplateRef } from '@angular/core';
 import { NzxBetweenTimeComponent } from '@xmagic/nzx-antd/between-time';
 import { DisabledDateType } from '@xmagic/nzx-antd/between-datetime';
@@ -48,7 +47,6 @@ export interface BaseBetweenTimeOptions<T> extends ControlOptions {
    * 组件内部 input 的 id 值
    */
   nzxEndId?: string;
-  nzxStartStatus?: NzStatus;
   nzxStartHourStep?: number;
   nzxStartMinuteStep?: number;
   nzxStartSecondStep?: number;
@@ -63,7 +61,6 @@ export interface BaseBetweenTimeOptions<T> extends ControlOptions {
   nzxStartAllowEmpty?: boolean;
   nzxStartOpenChange?: (evt: boolean, field: NzFormlyFieldConfig<BetweenTimeOptions>, instance: T) => void;
 
-  nzxEndStatus?: NzStatus;
   nzxEndHourStep?: number;
   nzxEndMinuteStep?: number;
   nzxEndSecondStep?: number;

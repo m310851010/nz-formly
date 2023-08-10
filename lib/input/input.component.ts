@@ -8,39 +8,38 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   template: `
     <nz-input-group
       *ngIf="hasAddon; else inputTemplate"
-      [nzSize]="props.nzSize"
-      [nzSearch]="props.nzSearch"
+      [nzSize]="to.nzSize"
+      [nzSearch]="to.nzSearch"
       [nzAddOnAfter]="nzAddOnAfter"
       [nzAddOnBefore]="nzAddOnBefore"
       [nzPrefix]="nzPrefix"
-      [nzAddOnAfterIcon]="props.nzAddOnAfterIcon"
-      [nzAddOnBeforeIcon]="props.nzAddOnBeforeIcon"
-      [nzPrefixIcon]="props.nzPrefixIcon"
+      [nzAddOnAfterIcon]="to.nzAddOnAfterIcon"
+      [nzAddOnBeforeIcon]="to.nzAddOnBeforeIcon"
+      [nzPrefixIcon]="to.nzPrefixIcon"
       [nzSuffix]="nzSuffix"
-      [nzSuffixIcon]="props.nzSuffixIcon"
-      [nzCompact]="props.nzCompact === true"
+      [nzSuffixIcon]="to.nzSuffixIcon"
+      [nzCompact]="to.nzCompact === true"
     >
-      <ng-container *ngIf="props.showInput !== false">
+      <ng-container *ngIf="to.showInput !== false">
         <ng-container *ngTemplateOutlet="inputTemplate"></ng-container>
       </ng-container>
-      <ng-container *nzStringTemplateOutlet="content; context: { $implicit: field, options: props }">
+      <ng-container *nzStringTemplateOutlet="content; context: { $implicit: field, options: to }">
         <div [innerHTML]="content"></div>
       </ng-container>
     </nz-input-group>
 
     <ng-template #inputTemplate>
-      <ng-container *ngIf="props.type !== 'number'; else numberTmp">
+      <ng-container *ngIf="to.type !== 'number'; else numberTmp">
         <input
-          *ngIf="!props.nzAutocomplete; else autoCompleteTemplate"
+          *ngIf="!to.nzAutocomplete; else autoCompleteTemplate"
           nz-input
           autocomplete="off"
           [formControl]="$any(formControl)"
-          [type]="props.type || 'text'"
+          [type]="to.type || 'text'"
           [formlyAttributes]="field"
-          [nzBorderless]="props.nzBorderless"
-          [nzStatus]="props.nzStatus"
-          [nzSize]="props.nzSize"
-          [disabled]="props.nzDisabled || props.disabled || formControl?.disabled"
+          [nzBorderless]="to.nzBorderless"
+          [nzSize]="to.nzSize"
+          [disabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
           maxlength=""
           ngDefaultControl
         />
@@ -52,13 +51,12 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
         nz-input
         autocomplete="off"
         [formControl]="$any(formControl)"
-        [type]="props.type || 'text'"
+        [type]="to.type || 'text'"
         [formlyAttributes]="field"
-        [nzSize]="props.nzSize"
+        [nzSize]="to.nzSize"
         [nzAutocomplete]="auto"
-        [nzBorderless]="props.nzBorderless"
-        [nzStatus]="props.nzStatus"
-        [disabled]="props.nzDisabled || props.disabled || formControl?.disabled"
+        [nzBorderless]="to.nzBorderless"
+        [disabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
         maxlength=""
         ngDefaultControl
       />
@@ -70,33 +68,31 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
         style="width: 100%"
         [formControl]="$any(formControl)"
         [formlyAttributes]="field"
-        [nzMin]="props.min"
-        [nzMax]="props.max"
-        [nzDisabled]="props.nzDisabled || props.disabled || formControl?.disabled"
-        [nzPrecision]="props.nzPrecision"
-        [nzPrecisionMode]="props.nzPrecisionMode"
-        [nzSize]="props.nzSize"
-        [nzPlaceHolder]="props.nzPlaceHolder || props.placeholder"
-        [nzStep]="props.step"
-        [nzStatus]="props.nzStatus"
-        [nzReadOnly]="props.nzReadOnly || props.readOnly"
-        (nzFocus)="props.nzFocus?.($event, field, instance)"
-        (nzBlur)="props.nzBlur?.($event, field, instance)"
+        [nzMin]="to.min"
+        [nzMax]="to.max"
+        [nzDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+        [nzPrecision]="to.nzPrecision"
+        [nzPrecisionMode]="to.nzPrecisionMode"
+        [nzSize]="to.nzSize"
+        [nzPlaceHolder]="to.nzPlaceHolder || to.placeholder"
+        [nzStep]="to.step"
+        (nzFocus)="to.nzFocus && to.nzFocus($event, field, instance)"
+        (nzBlur)="to.nzBlur && to.nzBlur($event, field, instance)"
         ngDefaultControl
       ></nz-input-number>
     </ng-template>
 
     <nz-autocomplete
       #auto
-      [nzBackfill]="props.nzBackfill"
-      [nzDefaultActiveFirstOption]="props.nzDefaultActiveFirstOption"
-      [nzWidth]="props.nzWidth"
-      [nzOverlayClassName]="props.nzOverlayClassName"
-      [nzOverlayStyle]="props.nzOverlayStyle"
-      [compareWith]="props.compareWith"
+      [nzBackfill]="to.nzBackfill"
+      [nzDefaultActiveFirstOption]="to.nzDefaultActiveFirstOption"
+      [nzWidth]="to.nzWidth"
+      [nzOverlayClassName]="to.nzOverlayClassName"
+      [nzOverlayStyle]="to.nzOverlayStyle"
+      [compareWith]="to.compareWith"
     >
       <ng-container
-        *ngFor="let item of props.options | toAsync: $any(props) | async | filter: props.filterFn:formControl?.value"
+        *ngFor="let item of to.options | toAsync: $any(to) | async | filter: to.filterFn:formControl?.value"
       >
         <nz-auto-option *ngIf="item.hide !== false" [nzValue]="item.value" [nzDisabled]="item.disabled">
           <ng-container *ngIf="labelTemplate; else strLabelTpl">
@@ -115,8 +111,8 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldInputComponent extends FieldType {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       step: 1,
       enableHTML: false,
       nzDefaultActiveFirstOption: true,
@@ -132,35 +128,35 @@ export class FormlyFieldInputComponent extends FieldType {
 
   get hasAddon() {
     return (
-      hasTplNameValue(this.props, 'nzAddOnAfter') ||
-      hasTplNameValue(this.props, 'nzAddOnBefore') ||
-      hasTplNameValue(this.props, 'nzPrefix') ||
-      hasTplNameValue(this.props, 'nzSuffix') ||
-      this.props.nzCompact === true ||
-      this.props.nzSearch === true
+      hasTplNameValue(this.to, 'nzAddOnAfter') ||
+      hasTplNameValue(this.to, 'nzAddOnBefore') ||
+      hasTplNameValue(this.to, 'nzPrefix') ||
+      hasTplNameValue(this.to, 'nzSuffix') ||
+      this.to.nzCompact === true ||
+      this.to.nzSearch === true
     );
   }
 
   get nzAddOnAfter() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzAddOnAfter');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzAddOnAfter');
   }
 
   get nzAddOnBefore() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzAddOnBefore');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzAddOnBefore');
   }
 
   get nzPrefix() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzPrefix');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzPrefix');
   }
 
   get nzSuffix() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzSuffix');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzSuffix');
   }
   get content() {
-    return resolveTplName(this.props, this.fieldTemplates, 'content');
+    return resolveTplName(this.to, this.fieldTemplates, 'content');
   }
 
   get labelTemplate() {
-    return resolveTplName(this.props, this.fieldTemplates, 'labelTemplate');
+    return resolveTplName(this.to, this.fieldTemplates, 'labelTemplate');
   }
 }

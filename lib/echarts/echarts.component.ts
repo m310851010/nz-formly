@@ -8,51 +8,51 @@ import { NgxEchartsDirective } from 'ngx-echarts';
     <div
       echarts
       #echarts="echarts"
-      [style.height]="props.height"
-      [style.width]="props.width"
-      [loading]="props.loading"
-      [theme]="props.theme"
-      [autoResize]="props.autoResize"
-      [loadingType]="props.loadingType"
-      [initOpts]="props.initOpts"
-      [loadingOpts]="props.loadingOpts"
-      [merge]="props.merge"
-      [options]="props.options | toAsync: $any(props) | async"
-      (chartInit)="props.chartInit?.($event, field, instance)"
-      (chartClick)="props.chartClick?.($event, field, instance)"
-      (chartDblClick)="props.chartDblClick?.($event, field, instance)"
-      (chartMouseDown)="props.chartMouseDown?.($event, field, instance)"
-      (chartMouseMove)="props.chartMouseMove?.($event, field, instance)"
-      (chartMouseUp)="props.chartMouseUp?.($event, field, instance)"
-      (chartMouseOver)="props.chartMouseOver?.($event, field, instance)"
-      (chartMouseOut)="props.chartMouseOut?.($event, field, instance)"
-      (chartGlobalOut)="props.chartGlobalOut?.($event, field, instance)"
-      (chartContextMenu)="props.chartContextMenu?.($event, field, instance)"
-      (chartLegendSelectChanged)="props.chartLegendSelectChanged?.($event, field, instance)"
-      (chartLegendSelected)="props.chartLegendSelected?.($event, field, instance)"
-      (chartLegendUnselected)="props.chartLegendUnselected?.($event, field, instance)"
-      (chartLegendScroll)="props.chartLegendScroll?.($event, field, instance)"
-      (chartDataZoom)="props.chartDataZoom?.($event, field, instance)"
-      (chartDataRangeSelected)="props.chartDataRangeSelected?.($event, field, instance)"
-      (chartTimelineChanged)="props.chartTimelineChanged?.($event, field, instance)"
-      (chartTimelinePlayChanged)="props.chartTimelinePlayChanged?.($event, field, instance)"
-      (chartRestore)="props.chartRestore?.($event, field, instance)"
-      (chartDataViewChanged)="props.chartDataViewChanged?.($event, field, instance)"
-      (chartMagicTypeChanged)="props.chartMagicTypeChanged?.($event, field, instance)"
-      (chartPieSelectChanged)="props.chartPieSelectChanged?.($event, field, instance)"
-      (chartPieSelected)="props.chartPieSelected?.($event, field, instance)"
-      (chartPieUnselected)="props.chartPieUnselected?.($event, field, instance)"
-      (chartMapSelectChanged)="props.chartMapSelectChanged?.($event, field, instance)"
-      (chartMapSelected)="props.chartMapSelected?.($event, field, instance)"
-      (chartMapUnselected)="props.chartMapUnselected?.($event, field, instance)"
-      (chartAxisAreaSelected)="props.chartAxisAreaSelected?.($event, field, instance)"
-      (chartFocusNodeAdjacency)="props.chartFocusNodeAdjacency?.($event, field, instance)"
-      (chartUnfocusNodeAdjacency)="props.chartUnfocusNodeAdjacency?.($event, field, instance)"
-      (chartBrush)="props.chartBrush?.($event, field, instance)"
-      (chartBrushEnd)="props.chartBrushEnd?.($event, field, instance)"
-      (chartBrushSelected)="props.chartBrushSelected?.($event, field, instance)"
-      (chartRendered)="props.chartRendered?.($event, field, instance)"
-      (chartFinished)="props.chartFinished?.($event, field, instance)"
+      [style.height]="to.height"
+      [style.width]="to.width"
+      [loading]="to.loading"
+      [theme]="to.theme"
+      [autoResize]="to.autoResize"
+      [loadingType]="to.loadingType"
+      [initOpts]="to.initOpts"
+      [loadingOpts]="to.loadingOpts"
+      [merge]="to.merge"
+      [options]="to.options | toAsync: $any(to) | async"
+      (chartInit)="to.chartInit && to.chartInit($event, field, instance)"
+      (chartClick)="to.chartClick && to.chartClick($event, field, instance)"
+      (chartDblClick)="to.chartDblClick && to.chartDblClick($event, field, instance)"
+      (chartMouseDown)="to.chartMouseDown && to.chartMouseDown($event, field, instance)"
+      (chartMouseMove)="to.chartMouseMove && to.chartMouseMove($event, field, instance)"
+      (chartMouseUp)="to.chartMouseUp && to.chartMouseUp($event, field, instance)"
+      (chartMouseOver)="to.chartMouseOver && to.chartMouseOver($event, field, instance)"
+      (chartMouseOut)="to.chartMouseOut && to.chartMouseOut($event, field, instance)"
+      (chartGlobalOut)="to.chartGlobalOut && to.chartGlobalOut($event, field, instance)"
+      (chartContextMenu)="to.chartContextMenu && to.chartContextMenu($event, field, instance)"
+      (chartLegendSelectChanged)="to.chartLegendSelectChanged && to.chartLegendSelectChanged($event, field, instance)"
+      (chartLegendSelected)="to.chartLegendSelected && to.chartLegendSelected($event, field, instance)"
+      (chartLegendUnselected)="to.chartLegendUnselected && to.chartLegendUnselected($event, field, instance)"
+      (chartLegendScroll)="to.chartLegendScroll && to.chartLegendScroll($event, field, instance)"
+      (chartDataZoom)="to.chartDataZoom && to.chartDataZoom($event, field, instance)"
+      (chartDataRangeSelected)="to.chartDataRangeSelected && to.chartDataRangeSelected($event, field, instance)"
+      (chartTimelineChanged)="to.chartTimelineChanged && to.chartTimelineChanged($event, field, instance)"
+      (chartTimelinePlayChanged)="to.chartTimelinePlayChanged && to.chartTimelinePlayChanged($event, field, instance)"
+      (chartRestore)="to.chartRestore && to.chartRestore($event, field, instance)"
+      (chartDataViewChanged)="to.chartDataViewChanged && to.chartDataViewChanged($event, field, instance)"
+      (chartMagicTypeChanged)="to.chartMagicTypeChanged && to.chartMagicTypeChanged($event, field, instance)"
+      (chartPieSelectChanged)="to.chartPieSelectChanged && to.chartPieSelectChanged($event, field, instance)"
+      (chartPieSelected)="to.chartPieSelected && to.chartPieSelected($event, field, instance)"
+      (chartPieUnselected)="to.chartPieUnselected && to.chartPieUnselected($event, field, instance)"
+      (chartMapSelectChanged)="to.chartMapSelectChanged && to.chartMapSelectChanged($event, field, instance)"
+      (chartMapSelected)="to.chartMapSelected && to.chartMapSelected($event, field, instance)"
+      (chartMapUnselected)="to.chartMapUnselected && to.chartMapUnselected($event, field, instance)"
+      (chartAxisAreaSelected)="to.chartAxisAreaSelected && to.chartAxisAreaSelected($event, field, instance)"
+      (chartFocusNodeAdjacency)="to.chartFocusNodeAdjacency && to.chartFocusNodeAdjacency($event, field, instance)"
+      (chartUnfocusNodeAdjacency)="to.chartUnfocusNodeAdjacency && to.chartUnfocusNodeAdjacency($event, field, instance)"
+      (chartBrush)="to.chartBrush && to.chartBrush($event, field, instance)"
+      (chartBrushEnd)="to.chartBrushEnd && to.chartBrushEnd($event, field, instance)"
+      (chartBrushSelected)="to.chartBrushSelected && to.chartBrushSelected($event, field, instance)"
+      (chartRendered)="to.chartRendered && to.chartRendered($event, field, instance)"
+      (chartFinished)="to.chartFinished && to.chartFinished($event, field, instance)"
       [formlyAttributes]="field"
     ></div>
   `,
@@ -60,12 +60,12 @@ import { NgxEchartsDirective } from 'ngx-echarts';
 })
 export class FormlyFieldEchartsComponent extends FieldType implements OnInit {
   @ViewChild('echarts', { read: NgxEchartsDirective, static: true }) instance!: NgxEchartsDirective;
-  override defaultOptions = {
-    props: { autoResize: true, loadingType: 'default', height: '400px' }
+  defaultOptions = {
+    templateOptions: { autoResize: true, loadingType: 'default', height: '400px' }
   };
 
   ngOnInit(): void {
-    this.props.instance = this.instance;
-    this.props.init?.(this.instance, this);
+    this.to.instance = this.instance;
+    this.to.init?.(this.instance, this);
   }
 }

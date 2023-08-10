@@ -14,19 +14,19 @@ import { CardOptions } from './formly.type';
     <nz-card
       [nzTitle]="nzTitle"
       [formlyAttributes]="field"
-      [nzBorderless]="props.nzBorderless"
+      [nzBorderless]="to.nzBorderless"
       [nzCover]="nzCover"
       [nzExtra]="nzExtra"
-      [nzHoverable]="props.nzHoverable"
-      [nzLoading]="props.nzLoading"
+      [nzHoverable]="to.nzHoverable"
+      [nzLoading]="to.nzLoading"
       [nzActions]="nzActions"
-      [nzBodyStyle]="props.nzBodyStyle"
-      [nzBordered]="props.nzBordered"
-      [nzType]="props.nzType"
-      [nzSize]="props.nzSize"
+      [nzBodyStyle]="to.nzBodyStyle"
+      [nzBordered]="to.nzBordered"
+      [nzType]="to.nzType"
+      [nzSize]="to.nzSize"
     >
       <formly-field [field]="item" *ngFor="let item of field.fieldGroup"></formly-field>
-      <ng-container *nzStringTemplateOutlet="nzContent; context: { $implicit: field, options: props }">
+      <ng-container *nzStringTemplateOutlet="nzContent; context: { $implicit: field, options: to }">
         {{ nzContent }}
       </ng-container>
     </nz-card>
@@ -34,8 +34,8 @@ import { CardOptions } from './formly.type';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldCardComponent extends FieldType<NzFormlyFieldConfig<CardOptions>> {
-  override defaultOptions = {
-    props: { nzSize: 'default', type: 'button' } as CardOptions
+  defaultOptions = {
+    templateOptions: { nzSize: 'default', type: 'button' } as CardOptions
   };
 
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {
@@ -43,18 +43,18 @@ export class FormlyFieldCardComponent extends FieldType<NzFormlyFieldConfig<Card
   }
 
   get nzTitle() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzTitle');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzTitle');
   }
   get nzCover() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzCover');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzCover');
   }
   get nzExtra() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzExtra');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzExtra');
   }
   get nzActions() {
-    return resolveTplNameArray(this.props, this.fieldTemplates, 'nzActions') || [];
+    return resolveTplNameArray(this.to, this.fieldTemplates, 'nzActions') || [];
   }
   get nzContent() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzContent');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzContent');
   }
 }

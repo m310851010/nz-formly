@@ -10,45 +10,45 @@ import { resolveTplName } from '@xmagic/nz-formly/common';
       #nzCascader
       [formControl]="$any(formControl)"
       [formlyAttributes]="field"
-      [nzOptions]="props.options | toAsync: $any(props) | async"
-      [nzAutoFocus]="props.nzAutoFocus"
-      [nzAllowClear]="props.nzAllowClear"
-      [nzBackdrop]="props.nzBackdrop"
-      [nzChangeOn]="props.nzChangeOn"
-      [nzExpandIcon]="nzExpandIcon"
-      [nzLabelRender]="nzLabelRender"
-      [nzLoadData]="props.nzLoadData"
-      [nzMouseEnterDelay]="props.nzMouseEnterDelay"
-      [nzMouseLeaveDelay]="props.nzMouseLeaveDelay"
+      [nzOptions]="to.options | toAsync: $any(to) | async"
+      [nzAutoFocus]="to.nzAutoFocus"
+      [nzAllowClear]="to.nzAllowClear"
+      [nzBackdrop]="to.nzBackdrop"
+      [nzChangeOn]="to.nzChangeOn"
+      [nzExpandIcon]="nzExpandIcon!"
+      [nzLabelRender]="nzLabelRender!"
+      [nzLoadData]="to.nzLoadData"
+      [nzMouseEnterDelay]="to.nzMouseEnterDelay"
+      [nzMouseLeaveDelay]="to.nzMouseLeaveDelay"
       [nzNotFoundContent]="nzNotFoundContent"
-      [nzOptionRender]="nzOptionRender"
-      [nzShowArrow]="props.nzShowArrow"
-      [nzShowInput]="props.nzShowInput"
-      [nzSuffixIcon]="nzSuffixIcon"
-      [nzTriggerAction]="props.nzTriggerAction"
-      [nzChangeOnSelect]="props.nzChangeOnSelect"
-      [nzColumnClassName]="props.nzColumnClassName"
-      [nzDisabled]="props.nzDisabled || props.disabled || formControl?.disabled"
-      [nzExpandTrigger]="props.nzExpandTrigger"
-      [nzMenuClassName]="props.nzMenuClassName"
-      [nzMenuStyle]="props.nzMenuStyle"
-      [nzLabelProperty]="props.nzLabelProperty || 'label'"
-      [nzPlaceHolder]="props.nzPlaceHolder || props.placeholder"
-      [nzShowSearch]="props.nzShowSearch"
-      [nzSize]="props.nzSize"
-      [nzValueProperty]="props.nzValueProperty || 'value'"
-      (nzClear)="props.nzClear?.(field, nzCascader)"
-      (nzSelect)="props.nzSelect?.($event, field, nzCascader)"
-      (nzSelectionChange)="props.nzSelectionChange?.($event, field, nzCascader)"
-      (nzVisibleChange)="props.nzVisibleChange?.($event, field, nzCascader)"
+      [nzOptionRender]="nzOptionRender!"
+      [nzShowArrow]="to.nzShowArrow"
+      [nzShowInput]="to.nzShowInput"
+      [nzSuffixIcon]="nzSuffixIcon!"
+      [nzTriggerAction]="to.nzTriggerAction"
+      [nzChangeOnSelect]="to.nzChangeOnSelect"
+      [nzColumnClassName]="to.nzColumnClassName"
+      [nzDisabled]="to.disabled != null ? to.disabled! : formControl?.disabled!"
+      [nzExpandTrigger]="to.nzExpandTrigger"
+      [nzMenuClassName]="to.nzMenuClassName"
+      [nzMenuStyle]="to.nzMenuStyle"
+      [nzLabelProperty]="to.nzLabelProperty || 'label'"
+      [nzPlaceHolder]="to.nzPlaceHolder || to.placeholder"
+      [nzShowSearch]="to.nzShowSearch"
+      [nzSize]="to.nzSize"
+      [nzValueProperty]="to.nzValueProperty || 'value'"
+      (nzClear)="to.nzClear && to.nzClear(field, nzCascader)"
+      (nzSelect)="to.nzSelect && to.nzSelect($event, field, nzCascader)"
+      (nzSelectionChange)="to.nzSelectionChange && to.nzSelectionChange($event, field, nzCascader)"
+      (nzVisibleChange)="to.nzVisibleChange && to.nzVisibleChange($event, field, nzCascader)"
       ngDefaultControl
     ></nz-cascader>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldCascaderComponent extends FieldType {
-  override defaultOptions = {
-    props: {
+  defaultOptions = {
+    templateOptions: {
       nzPlaceHolder: '请选择',
       nzExpandTrigger: 'click',
       nzTriggerAction: 'click',
@@ -66,22 +66,22 @@ export class FormlyFieldCascaderComponent extends FieldType {
   }
 
   get nzNotFoundContent() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzNotFoundContent');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzNotFoundContent');
   }
 
   get nzExpandIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzExpandIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzExpandIcon');
   }
 
   get nzLabelRender() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzLabelRender');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzLabelRender');
   }
 
   get nzOptionRender() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzOptionRender');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzOptionRender');
   }
 
   get nzSuffixIcon() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzSuffixIcon');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzSuffixIcon');
   }
 }

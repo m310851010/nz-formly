@@ -117,7 +117,7 @@ export class AppComponent {
     {
       key: 'name',
       type: 'input',
-      props: {
+      templateOptions: {
         label: '名称',
         required: true,
         nzSearch: true,
@@ -127,7 +127,7 @@ export class AppComponent {
     {
       key: 'awesome',
       type: 'checkbox',
-      props: {
+      templateOptions: {
         label: '渠道',
         options: [
           { label: '网络', value: 1 },
@@ -139,7 +139,7 @@ export class AppComponent {
     {
       key: 'radioKey',
       type: 'radio',
-      props: {
+      templateOptions: {
         label: '单选',
         options: [
           { label: '网络', value: 1 },
@@ -151,7 +151,7 @@ export class AppComponent {
     {
       key: 'switchDemoKey',
       type: 'switch',
-      props: {
+      templateOptions: {
         label: '开关',
         nzxCheckedValue: 'XX',
         nzxUnCheckedValue: 'YY'
@@ -160,7 +160,7 @@ export class AppComponent {
     {
       key: 'comment',
       type: 'textarea',
-      props: {
+      templateOptions: {
         label: '评论',
         rows: 2,
         maxLength: 100,
@@ -170,7 +170,7 @@ export class AppComponent {
     {
       key: 'status',
       type: 'select',
-      props: {
+      templateOptions: {
         label: '状态',
         nzAllowClear: true,
         options: [
@@ -182,14 +182,14 @@ export class AppComponent {
     {
       key: 'myText',
       type: 'text',
-      props: {
+      templateOptions: {
         label: '文本'
       }
     },
     {
       key: 'myText2',
       type: 'text',
-      props: {
+      templateOptions: {
         label: '文本2'
       }
     }
@@ -205,11 +205,11 @@ export class AppComponent {
 
 ## 运行环境
 
-- ndoejs 14+
-- angular 13.0+
-- ng-zorro-antd 13.0+
-- @ngx-formly/core 6.0+
-- @xmagic/nzx-antd 13.0+ (angular 14 请安装@xmagic/nzx-antd 14.0+)
+- ndoejs 14.x
+- angular 12.x
+- ng-zorro-antd 12.x
+- @ngx-formly/core 6.x
+- @xmagic/nzx-antd 12.x (angular 14 请安装@xmagic/nzx-antd 14.x)
 
 ### License
 

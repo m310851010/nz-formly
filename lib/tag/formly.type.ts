@@ -9,7 +9,7 @@ export interface TagOptions extends ControlOptions {
   /**
    * tab内容
    */
-  nzxContent?: string | TemplateRef<{ $implicit: TagFieldConfig; props: TagOptions }>;
+  nzxContent?: string | TemplateRef<{ $implicit: TagFieldConfig; templateOptions: TagOptions }>;
   /**
    * tab内容模板名称
    */

@@ -6,7 +6,7 @@ import { FormlyExtension } from '@ngx-formly/core';
  * fields = [
  * {
  *  type: 'input',
- *  props: {
+ *  templateOptions: {
  *    valueChanges: (value, field) => {}
  *  }
  * }
@@ -14,12 +14,12 @@ import { FormlyExtension } from '@ngx-formly/core';
  */
 export const valueChangesExtension: FormlyExtension = {
   postPopulate(field): void {
-    if (!field.formControl || !field.props?.valueChanges || field.props.valueChanges.observed) {
+    if (!field.formControl || !field.templateOptions?.valueChanges || field.templateOptions.valueChanges.observed) {
       return;
     }
 
-    field.props.valueChanges.observed = true;
-    field.formControl.valueChanges.subscribe(value => field.props!.valueChanges(value, field));
+    field.templateOptions.valueChanges.observed = true;
+    field.formControl.valueChanges.subscribe(value => field.templateOptions!.valueChanges(value, field));
   }
 };
 

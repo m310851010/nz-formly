@@ -7,14 +7,14 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
   template: `
     <nz-tag
       #instance
-      [nzColor]="props.nzColor"
-      [nzChecked]="props.nzChecked"
-      [nzMode]="props.nzMode"
-      (nzOnClose)="props.nzOnClose?.($event, field, instance)"
-      (nzCheckedChange)="props.nzCheckedChange?.($event, field, instance)"
+      [nzColor]="to.nzColor"
+      [nzChecked]="to.nzChecked"
+      [nzMode]="to.nzMode"
+      (nzOnClose)="to.nzOnClose && to.nzOnClose($event, field, instance)"
+      (nzCheckedChange)="to.nzCheckedChange && to.nzCheckedChange($event, field, instance)"
       [formlyAttributes]="field"
     >
-      <ng-container *nzStringTemplateOutlet="nzxContent; context: { $implicit: field, props: props }">
+      <ng-container *nzStringTemplateOutlet="nzxContent; context: { $implicit: field, templateOptions: to }">
         {{ nzxContent }}
       </ng-container>
 
@@ -26,8 +26,8 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormlyFieldTagComponent extends FieldType {
-  override defaultOptions = {
-    props: { nzMode: 'default' }
+  defaultOptions = {
+    templateOptions: { nzMode: 'default' }
   };
 
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {
@@ -35,6 +35,6 @@ export class FormlyFieldTagComponent extends FieldType {
   }
 
   get nzxContent() {
-    return resolveTplName(this.props, this.fieldTemplates, 'nzxContent');
+    return resolveTplName(this.to, this.fieldTemplates, 'nzxContent');
   }
 }
