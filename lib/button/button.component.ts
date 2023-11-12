@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
 import { FieldType } from '@ngx-formly/core';
-import { FormlyBoxTemplates, hasTplNameValue, resolveTplName  } from '@xmagic/nz-formly/common';
+import { FormlyBoxTemplates, hasTplNameValue, resolveTplName } from '@xmagic/nz-formly/common';
 
 @Component({
   selector: 'nz-formly-button',
@@ -17,6 +17,7 @@ import { FormlyBoxTemplates, hasTplNameValue, resolveTplName  } from '@xmagic/nz
       [nzSearch]="props.nzSearch"
       [nzShape]="props.nzShape"
       [nzType]="props.nzType"
+      [disabled]="props.nzDisabled || props.disabled || formControl?.disabled"
       [nzWaveExtraNode]="props.nzWaveExtraNode"
       nz-dropdown
     >
