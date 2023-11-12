@@ -21,11 +21,12 @@ import {
 } from 'ng-zorro-antd/table';
 import { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
 import { FetchParams } from '@xmagic/nzx-antd/service';
+import { Any } from '@xmagic/nzx-antd';
 
 /**
  * Table模板配置
  */
-export interface TableOptions<T = NzSafeAny> extends ControlOptions {
+export interface TableOptions<T extends Record<string, Any> = Any> extends ControlOptions {
   instance?: NzxTableComponent<T>;
   init?: (instance: NzxTableComponent<T>, component: NzSafeAny) => void;
   /**
@@ -242,11 +243,19 @@ export interface TableOptions<T = NzSafeAny> extends ControlOptions {
   /**
    * 	当服务端分页、筛选、排序时，用于获得参数
    */
-  nzQueryParams?: (evt: NzTableQueryParams, field: NzFormlyFieldConfig<TableOptions>, instance: NzxTableComponent<T>) => void;
+  nzQueryParams?: (
+    evt: NzTableQueryParams,
+    field: NzFormlyFieldConfig<TableOptions>,
+    instance: NzxTableComponent<T>
+  ) => void;
   /**
    * 当前页面展示数据改变的回调函数
    */
-  nzCurrentPageDataChange?: (evt: T[], field: NzFormlyFieldConfig<TableOptions>, instance: NzxTableComponent<T>) => void;
+  nzCurrentPageDataChange?: (
+    evt: T[],
+    field: NzFormlyFieldConfig<TableOptions>,
+    instance: NzxTableComponent<T>
+  ) => void;
 
   /**
    * 数据行点击事件
@@ -259,7 +268,11 @@ export interface TableOptions<T = NzSafeAny> extends ControlOptions {
   /**
    * 数据行右键菜单事件
    */
-  rowContextmenu?: (evt: RowEventArg<T>, field: NzFormlyFieldConfig<TableOptions>, instance: NzxTableComponent<T>) => void;
+  rowContextmenu?: (
+    evt: RowEventArg<T>,
+    field: NzFormlyFieldConfig<TableOptions>,
+    instance: NzxTableComponent<T>
+  ) => void;
 
   /**
    * 单元格点击事件
@@ -268,11 +281,19 @@ export interface TableOptions<T = NzSafeAny> extends ControlOptions {
   /**
    * 单元格双击事件
    */
-  cellDblclick?: (evt: CellEventArg<T>, field: NzFormlyFieldConfig<TableOptions>, instance: NzxTableComponent<T>) => void;
+  cellDblclick?: (
+    evt: CellEventArg<T>,
+    field: NzFormlyFieldConfig<TableOptions>,
+    instance: NzxTableComponent<T>
+  ) => void;
   /**
    * 单元格右键菜单事件
    */
-  cellContextmenu?: (evt: CellEventArg<T>, field: NzFormlyFieldConfig<TableOptions>, instance: NzxTableComponent<T>) => void;
+  cellContextmenu?: (
+    evt: CellEventArg<T>,
+    field: NzFormlyFieldConfig<TableOptions>,
+    instance: NzxTableComponent<T>
+  ) => void;
 
   /**
    * 表头单元格事件
@@ -281,11 +302,19 @@ export interface TableOptions<T = NzSafeAny> extends ControlOptions {
   /**
    * 表头单元格双击事件
    */
-  headerDblclick?: (evt: HeaderEventArg, field: NzFormlyFieldConfig<TableOptions>, instance: NzxTableComponent<T>) => void;
+  headerDblclick?: (
+    evt: HeaderEventArg,
+    field: NzFormlyFieldConfig<TableOptions>,
+    instance: NzxTableComponent<T>
+  ) => void;
   /**
    * 表头单元格右键菜单事件
    */
-  headerContextmenu?: (evt: HeaderEventArg, field: NzFormlyFieldConfig<TableOptions>, instance: NzxTableComponent<T>) => void;
+  headerContextmenu?: (
+    evt: HeaderEventArg,
+    field: NzFormlyFieldConfig<TableOptions>,
+    instance: NzxTableComponent<T>
+  ) => void;
 }
 
 /**
