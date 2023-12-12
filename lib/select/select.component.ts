@@ -17,6 +17,7 @@ export class FormlyFieldSelectComponent extends FieldType {
       nzDropdownMatchSelectWidth: true,
       nzMaxMultipleCount: Infinity,
       nzMaxTagCount: Infinity,
+      nzShowArrow: true,
       nzTokenSeparators: [],
       nzOptionHeightPx: 32,
       nzOptionOverflowSize: 8,
