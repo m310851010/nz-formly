@@ -31,7 +31,7 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
       </ng-container>
 
       <ng-template #buttonTemplate>
-        <ng-container *ngFor="let item of props.options | toAsync: $any(props) | async">
+        <ng-container *ngFor="let item of props.options | toAsync: $any(props) | async | defaultify: []">
           <label
             *ngIf="item.hide !== false"
             nz-radio-button
@@ -47,7 +47,7 @@ import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
             </ng-container>
 
             <ng-template #strLabelTpl>
-              <span>{{item.label}}</span>
+              <span>{{ item.label }}</span>
             </ng-template>
             <i *ngIf="item.afterIcon" nz-icon [nzType]="item.afterIcon"></i>
           </label>
