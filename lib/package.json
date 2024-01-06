@@ -1,6 +1,6 @@
 {
   "name": "@xmagic/nz-formly",
-  "version": "17.0.0",
+  "version": "17.0.1",
   "description": "基于ng-zorro-antd UI 扩展的ngx-formly组件库",
   "author": "m310851010",
   "repository": {
