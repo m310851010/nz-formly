@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
 import { FieldType } from '@ngx-formly/core';
-import { FormlyBoxTemplates, hasTplNameValue, resolveTplName } from '@xmagic/nz-formly/common';
+import { FormlyBoxTemplates, resolveTplName } from '@xmagic/nz-formly/common';
 
 @Component({
   selector: 'nz-formly-checkbox-component',
@@ -13,6 +13,7 @@ import { FormlyBoxTemplates, hasTplNameValue, resolveTplName } from '@xmagic/nz-
       [nzxLabelTemplate]="labelTemplate"
       [nzxLayout]="props.nzxLayout"
       [nzxMultiple]="props.nzxMultiple"
+      [nzxRequired]="props.nzxRequired"
       (nzxBlur)="props.blur && props.blur(field, $event)"
       (nzxFocus)="props.focus && props.focus(field, $event)"
       (nzxItemChange)="props.nzxItemChange && props.nzxItemChange($event, field, this)"
@@ -23,7 +24,7 @@ import { FormlyBoxTemplates, hasTplNameValue, resolveTplName } from '@xmagic/nz-
 })
 export class FormlyFieldCheckboxComponent extends FieldType {
   override defaultOptions = {
-    props: { options: [], nzxMultiple: true, nzxLayout: 'horizontal' }
+    props: { options: [], nzxMultiple: true, nzxLayout: 'horizontal', nzxRequired: true }
   };
 
   constructor(@Optional() public fieldTemplates: FormlyBoxTemplates) {

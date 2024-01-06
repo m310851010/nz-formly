@@ -20,7 +20,16 @@ import { NzxFormUtils } from '@xmagic/nzx-antd/util';
       ],
       validators: [
         { name: 'email', validation: NzxFormUtils.email() },
-        { name: 'mobile', validation: NzxFormUtils.mobile() }
+        { name: 'mobile', validation: NzxFormUtils.mobile() },
+        {
+          name: 'notBlank',
+          validation: control => {
+            if (!control.value) {
+              return null;
+            }
+            return /^[\s\uFEFF]+|[\s\uFEFF]+$/.test(control.value) ? { notBlank: {} } : null;
+          }
+        }
       ],
       extensions: [defaultPlaceholderExtensionOption, valueChangesExtensionOption]
     })
