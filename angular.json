@@ -33,6 +33,120 @@
           }
         }
       }
+    },
+    "demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "demo",
+      "sourceRoot": "demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/demo",
+            "index": "demo/src/index.html",
+            "browser": "demo/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "demo/tsconfig.app.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "demo/src/favicon.ico",
+              "demo/src/assets",
+              {
+                "glob": "**/*.svg",
+                "ignore": ["fill/*", "twotone/*"],
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "demo/src/styles.less"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules"]
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "demo/src/environments/environment.ts",
+                  "with": "demo/src/environments/environment.development.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4800,
+            "host": "0.0.0.0",
+            "proxyConfig": "demo/proxy.conf.js"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "demo:build:production"
+            },
+            "development": {
+              "buildTarget": "demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "demo/tsconfig.spec.json",
+            "inlineStyleLanguage": "less",
+            "assets": [
+              "demo/src/favicon.ico",
+              "demo/src/assets"
+            ],
+            "styles": [
+              "demo/src/styles.less"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   }
 }
