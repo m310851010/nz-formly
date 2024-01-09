@@ -23,7 +23,6 @@ const COMPONENT = FormlyFieldModalComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzModalModule {}

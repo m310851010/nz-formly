@@ -21,7 +21,6 @@ const COMPONENT = FormlyFieldCardComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzCardModule {}

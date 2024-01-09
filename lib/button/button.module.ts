@@ -25,7 +25,6 @@ const COMPONENT = FormlyFieldButtonComponent;
       ]
     }),
     NzDropDownModule
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzButtonModule {}

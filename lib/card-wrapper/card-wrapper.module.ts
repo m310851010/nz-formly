@@ -19,7 +19,6 @@ const COMPONENT = CardWrapperComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzCardWrapperModule {}

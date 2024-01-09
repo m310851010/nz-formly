@@ -21,7 +21,6 @@ const COMPONENT = FormlyFieldTagComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzTagModule {}

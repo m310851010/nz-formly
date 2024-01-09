@@ -18,7 +18,6 @@ const COMPONENT = FormlyFieldSpaceComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzSpaceModule {}

@@ -22,7 +22,6 @@ const COMPONENT = FormlyFieldDateRangePickerComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzDateRangePickerModule {}

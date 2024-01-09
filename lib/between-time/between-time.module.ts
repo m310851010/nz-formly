@@ -21,7 +21,6 @@ const COMPONENT = FormlyFieldBetweenTimeComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyFieldBetweenTimeModule {}

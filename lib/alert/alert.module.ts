@@ -18,7 +18,6 @@ const COMPONENT = FormlyFieldAlertComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyFieldAlertModule {}

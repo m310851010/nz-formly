@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 const COMPONENT = FormlyFieldBetweenDatetimeComponent;
 @NgModule({
-  declarations: [COMPONENT],
+  declarations: [FormlyFieldBetweenDatetimeComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -21,7 +21,6 @@ const COMPONENT = FormlyFieldBetweenDatetimeComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyFieldBetweenDatetimeModule {}

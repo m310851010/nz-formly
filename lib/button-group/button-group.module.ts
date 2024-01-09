@@ -9,9 +9,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 const COMPONENT = FormlyFieldButtonGroupComponent;
 
 @NgModule({
-  declarations: [
-    COMPONENT
-  ],
+  declarations: [COMPONENT],
   imports: [
     CommonModule,
     NzButtonModule,
@@ -25,7 +23,6 @@ const COMPONENT = FormlyFieldButtonGroupComponent;
       ]
     }),
     NzDropDownModule
-  ],
-  exports: [COMPONENT]
+  ]
 })
-export class FormlyNzButtonGroupModule { }
+export class FormlyNzButtonGroupModule {}

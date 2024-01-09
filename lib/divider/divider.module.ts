@@ -19,7 +19,6 @@ const COMPONENT = FormlyFieldDividerComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzDividerModule {}

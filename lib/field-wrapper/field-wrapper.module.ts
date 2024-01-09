@@ -21,10 +21,7 @@ const COMPONENT = FieldWrapperComponent;
           component: COMPONENT
         }
       ]
-    }),
-
-
-  ],
-  exports: [COMPONENT]
+    })
+  ]
 })
 export class FormlyNzFormFieldModule {}

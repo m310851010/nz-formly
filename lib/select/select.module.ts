@@ -26,7 +26,6 @@ const COMPONENT = FormlyFieldSelectComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzSelectModule {}

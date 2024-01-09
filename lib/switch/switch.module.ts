@@ -22,7 +22,6 @@ const COMPONENT = FormlyFieldSwitchComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzSwitchModule {}

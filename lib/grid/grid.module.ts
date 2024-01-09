@@ -19,7 +19,6 @@ const COMPONENT = FormlyFieldGridComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzGridModule {}

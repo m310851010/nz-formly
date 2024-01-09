@@ -22,7 +22,6 @@ const COMPONENT = FormlyFieldSliderComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzSliderModule {}

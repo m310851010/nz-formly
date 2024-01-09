@@ -23,7 +23,6 @@ const COMPONENT = FormlyFieldRepeatComponent;
     }),
     NzIconModule,
     NzOutletModule
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyRepeatModule {}

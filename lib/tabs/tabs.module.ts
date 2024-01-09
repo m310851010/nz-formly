@@ -4,7 +4,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormlyFieldTabsComponent } from './tabs.component';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzOutletModule } from 'ng-zorro-antd/core/outlet'
+import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
 const COMPONENT = FormlyFieldTabsComponent;
 
@@ -23,7 +23,6 @@ const COMPONENT = FormlyFieldTabsComponent;
     }),
     NzButtonModule,
     NzOutletModule
-  ],
-  exports: [COMPONENT]
+  ]
 })
-export class FormlyNzTabsModule { }
+export class FormlyNzTabsModule {}

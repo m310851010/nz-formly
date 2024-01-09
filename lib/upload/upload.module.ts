@@ -22,7 +22,6 @@ const COMPONENT = FormlyFieldUploadComponent;
       ]
     }),
     ReactiveFormsModule
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzUploadModule {}

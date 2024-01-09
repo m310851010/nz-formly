@@ -30,7 +30,6 @@ const COMPONENT = FormlyFieldRadioComponent;
       ]
     }),
     NzOutletModule
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzRadioModule {}

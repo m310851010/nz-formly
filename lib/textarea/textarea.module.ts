@@ -22,7 +22,6 @@ const COMPONENT = FormlyFieldTextareaComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzTextareaModule {}

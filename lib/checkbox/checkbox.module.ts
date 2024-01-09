@@ -26,7 +26,6 @@ const COMPONENT = FormlyFieldCheckboxComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzCheckboxModule {}

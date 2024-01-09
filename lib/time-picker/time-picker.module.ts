@@ -22,7 +22,6 @@ const COMPONENT = FormlyFieldTimePickerComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzTimePickerModule {}

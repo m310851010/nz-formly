@@ -22,7 +22,6 @@ const COMPONENT = FormlyFieldRateComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzRateModule {}

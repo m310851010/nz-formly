@@ -49,7 +49,6 @@ const COMPONENT = FormlyFieldInputComponent;
     }),
     NzAutocompleteModule,
     NzxPipeModule
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzInputModule {}

@@ -22,7 +22,6 @@ const COMPONENT = FormlyFieldTextValueComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzTextValueModule {}

@@ -22,7 +22,6 @@ const COMPONENT = FormlyFieldTreeComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzTreeModule {}

@@ -23,7 +23,6 @@ const COMPONENT = ModalWrapperComponent;
         }
       ]
     })
-  ],
-  exports: [COMPONENT]
+  ]
 })
 export class FormlyNzModalWrapperModule {}
