@@ -37,6 +37,7 @@ import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { MenuData } from './menu-data';
 import { NzxUtils } from '@xmagic/nzx-antd/util';
 import { NzTreeSelectComponent } from 'ng-zorro-antd/tree-select';
+import { NzxModalService } from '@xmagic/nzx-antd/modal';
 
 @Component({
   selector: 'app-root',
@@ -77,6 +78,7 @@ import { NzTreeSelectComponent } from 'ng-zorro-antd/tree-select';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
+  constructor(private modalService: NzxModalService) {}
   nodes = timer(1000).pipe(
     map(() => [
       {
@@ -127,58 +129,28 @@ export class AppComponent implements OnInit {
   );
   modalForm = new FormGroup({});
   modalModel: Record<string, any> = {};
-  modalFields: FormlyFieldConfig[] = [];
+  modalFields: FormlyFieldConfig[] = [{type: 'input',props: {
+    type: 'text',
+    }}];
   value = '';
 
   ngOnInit() {
     const model: Record<string, any> = {};
+  }
+
+  onOpenModal(modalTemplate: TemplateRef<any>) {
     this.modalFields = [
       {
-        type: 'tree-select',
-        key: 'pid',
+        type: 'radio',
+        key: 'menuType',
         props: {
-          label: '上级菜单',
-          nzDefaultExpandAll: true,
-          nzAllowClear: true,
-          nzShowSearch: true,
-          nzHideUnMatched: true,
-          options: this.menus$.pipe(
-            map(list => {
-              const nodes = [...list];
-              if (model.menuType === 'D') {
-                const dNode = nodes.find(v => v.id === model.id);
-                if (dNode) {
-                  dNode['isLeaf'] = true;
-                  dNode.children = [];
-                }
-              }
-              NzxUtils.forEachTree(nodes, node => {
-                if (node.children) {
-                  node.children = [...node.children];
-                }
-
-                if (node.id === model.id) {
-                  node['disabled'] = true;
-                }
-
-                node['title'] = node.name;
-                node['key'] = node.id;
-                if (node.menuType === 'D') {
-                  return true;
-                }
-                if (node.menuType === 'M') {
-                  node['isLeaf'] = true;
-                  node.children = [];
-                  return true;
-                }
-                return false;
-              });
-
-              return nodes;
-            })
-          )
+          label: '菜单类型',
+          options: [{ label: 'x', value: 1 }]
         }
       }
     ];
+    this.modalService.create({
+      nzContent: modalTemplate
+    });
   }
 }

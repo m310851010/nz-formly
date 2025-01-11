@@ -8,6 +8,7 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzxPipeModule } from '@xmagic/nzx-antd/pipe';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
 
 const COMPONENT = FormlyFieldInputComponent;
 
@@ -48,7 +49,8 @@ const COMPONENT = FormlyFieldInputComponent;
       ]
     }),
     NzAutocompleteModule,
-    NzxPipeModule
+    NzxPipeModule,
+    NzIconDirective
   ]
 })
 export class FormlyNzInputModule {}
